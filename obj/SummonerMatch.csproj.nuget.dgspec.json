@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\SummonerMatch.csproj": {}
+    "C:\\Users\\mati\\Desktop\\FINAL-PROJECT\\SummonerMatch.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\SummonerMatch.csproj": {
+    "C:\\Users\\mati\\Desktop\\FINAL-PROJECT\\SummonerMatch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\SummonerMatch.csproj",
+        "projectUniqueName": "C:\\Users\\mati\\Desktop\\FINAL-PROJECT\\SummonerMatch.csproj",
         "projectName": "SummonerMatch",
-        "projectPath": "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\SummonerMatch.csproj",
-        "packagesPath": "C:\\Users\\tarda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\obj\\",
+        "projectPath": "C:\\Users\\mati\\Desktop\\FINAL-PROJECT\\SummonerMatch.csproj",
+        "packagesPath": "C:\\Users\\mati\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mati\\Desktop\\FINAL-PROJECT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tarda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mati\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
