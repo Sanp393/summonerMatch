@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MmX1sURbg5pGeAfsYmm3FB3JARo6VWZpxoHl6MFKKo6kQLosiTtPKwX69YVk943giTfdfp0TCLAVlfH89o7OkA==",
+  "dgSpecHash": "VSUSpGRsJUo4/yoDHgwjrsfyawQs4z/tMHEgteIiPotMWxSFRDf6dRIiy5H5LGIp3nhksPR4rJhJX/HDi+g8QQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tarda\\Desktop\\cursoFullStackNET\\SummonerMatch\\SummonerMatch.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\tarda\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\tarda\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\tarda\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\tarda\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\tarda\\Source\\Repos\\SummonerMatch\\SummonerMatch.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
