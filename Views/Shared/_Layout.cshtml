@@ -16,34 +16,45 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #101014;">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/assets/logos/SummonerMatchIcon.svg" class="d-inline-block d-sm-none ps-2" alt="SummonerMatch" height="30" />
                     <img src="~/assets/logos/SummonerMatchText.svg" class="d-none d-sm-inline-block" alt="SummonerMatch" height="20" />
-                    <img src="~/assets/logos/SummonerMatchIcon.png" class="d-inline-block d-sm-none" alt="SummonerMatch" height="30" />
                 </a>
 
-                <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#adb5bd"
-                        class="bi bi-three-dots" viewBox="0 0 16 16">
-                        <path
-                            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
-                    </svg>
-                </button>
+                @if (true)
+                {
+                    <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#adb5bd"
+                             class="bi bi-three-dots" viewBox="0 0 16 16">
+                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                        </svg>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="LogIn">
-                                <button type="button" class="btn text-light menuBtnDark">Iniciar Sesión</button>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">
-                                <button type="button" class="btn menuBtnColor">Registrarse</button>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="LogIn">
+                                    <button type="button" class="btn text-light menuBtnDark">Iniciar Sesión</button>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">
+                                    <button type="button" class="btn menuBtnColor">Registrarse</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">
+                            <img src="https://imgs.search.brave.com/MWlI8P3aJROiUDO9A-LqFyca9kSRIxOtCg_Vf1xd9BA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc"
+                                 alt="Imagen de perfil" class="rounded-circle" width="38" />
+                        </a>
+                    </div>
+                }
             </div>
         </nav>
     </header>

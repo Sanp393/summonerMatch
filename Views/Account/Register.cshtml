@@ -3,28 +3,79 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 *@
 @{
     Layout = "_LayoutAccount";
+    ViewData["Title"] = "Register";
 }
 
 <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <form asp-action="LogIn" asp-controller="Account" method="post" class="align-middle">
-        <div class="mb-3">
-            <label for="username" class="form-label">Nombre de Usuario</label>
-            <input type="text" class="form-control" style="border-radius: 8px; height: 40px;" id="username"
-                   name="username" required>
+    <form asp-action="Login" asp-controller="Account" method="post" class="align-middle">
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="w-50 me-1">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control inputRounded" id="username"
+                       name="username" required>
+            </div>
+            <div class="w-50 ms-1">
+                <label for="nickname" class="form-label">Nickname</label>
+                <input type="text" class="form-control inputRounded" id="nickname"
+                       name="nickname" required>
+            </div>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <div class="input-group">
-                <input type="password" class="form-control" style="border-radius: 8px 0 0 8px; height: 40px;"
-                       id="password" name="password" required>
-                <button class="menuBtnColor px-3 border-0" type="button" id="togglePassword">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#202024" class="bi bi-eye" viewBox="0 0 16 16"> <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" /> <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" /> </svg>
-                </button>
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control inputRounded" id="email" name="email" required>
+        </div>
+        <div class="mb-4 d-flex justify-content-between">
+            <div class="w-50 me-1">
+                <label for="password" class="form-label">Contraseña</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" style="border-radius: 10px 0 0 10px; height: 40px;"
+                        id="password" name="password" required>
+                    <button class="menuBtnColor px-3 border-0" type="button" id="togglePassword">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#202024" class="bi bi-eye"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                            <path
+                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="w-50 ms-1">
+                <label for="passwordConfirm" class="form-label">Confirmar contraseña</label>
+                <input type="password" class="form-control inputRounded"
+                    id="passwordConfirm" name="passwordConfirm" required>
+            </div>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <div>
+                <select class="form-select inputRounded" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mx-3">
+                <select class="form-select inputRounded" aria-label="Default select example">
+                    <option selected class="inputRounded">Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div>
+                <select class="form-select inputRounded" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center mt-5">
             <a asp-area="" asp-controller="Account" asp-action="LogIn"
-               class="me-5 align-middle h-100 text-decoration-none linkText">Ya tienes cuenta? Inicia sesión</a>
+                class="me-5 align-middle h-100 text-decoration-none linkText">Ya tienes cuenta? Iniciar sesión</a>
             <button type="submit" class="btn menuBtnColor ms-5">Registrarse</button>
         </div>
     </form>
