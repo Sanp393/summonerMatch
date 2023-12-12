@@ -24,7 +24,7 @@ namespace SummonerMatch.Controllers
             {
                 try
                 {
-                    var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, true, lockoutOnFailure: false);
+                    var result = await _signInManager.PasswordSignInAsync(model.userName, model.password, true, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");
@@ -49,10 +49,12 @@ namespace SummonerMatch.Controllers
             return View();
         }
 
+        
         public IActionResult LogIn()
         {
             return View();
         }
+        
 
         public IActionResult Register()
         {
