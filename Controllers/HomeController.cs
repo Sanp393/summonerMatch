@@ -18,8 +18,12 @@ namespace SummonerMatch._Controllers
 
         public IActionResult Index()
         {
+            /*
             List<Partida> Partidas = _context.Partidas.ToList();
             return View(Partidas);
+            */
+            return View();
         }
+        
     }
 }

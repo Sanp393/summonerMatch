@@ -14,9 +14,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 });
 
 //
-
-
-//builder.Services.AddIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //
 var app = builder.Build();
