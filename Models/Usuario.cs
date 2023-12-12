@@ -1,20 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SummonerMatch.Models
 {
-    public class Usuario
+    public class Usuario : IdentityUser
     {
         [Key]
-        public int IdUsuario { get; set; }
-        public bool Admin { get; set; }
-        public string UserName { get; set; }
-        public string UserNickname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int? FkRegionServidor { get; set; }
-        public int? FkRango { get; set; }
-        public int? FkPosicion { get; set; }
-        public int FkImagenPerfil { get; set; }
-        public int? FkIdEquipo { get; set; }
+        public int idUsuario { get; set; }
+        public bool admin { get; set; }
+        public string userName { get; set; }
+        public string userNickname { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public int? fkRegionServidor { get; set; }
+        public int? fkRango { get; set; }
+        public int? fkPosicion { get; set; }
+        public int fkImagenPerfil { get; set; }
+        public int? fkIdEquipo { get; set; }
     }
 }
