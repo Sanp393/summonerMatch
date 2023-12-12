@@ -44,3 +44,8 @@ body {
 .linkText:hover{
   color: #26d0ff;
 }
+
+.inputRounded {
+  border-radius: 10px;
+  height: 40px;
+}
