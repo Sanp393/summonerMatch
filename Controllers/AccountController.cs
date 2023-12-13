@@ -35,5 +35,12 @@ namespace SummonerMatch
                 return View();
             }
         }
+
+        [HttpGet]
+        public IActionResult Profile()
+        {
+
+            return View();
+        }
     }
 }

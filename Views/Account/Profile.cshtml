@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Perfil";
 }
+
+<div class="container">
+    <h2>Mi Perfil</h2>
+    <div class="profile-container">
+        <div class="profile-image">
+            <!-- Aquí deberías cargar la imagen del perfil del usuario -->
+            <img src="../wwwroot/assets/images/imgProfile/AhriFoxfire.ico" alt="Foto de perfil" />
+        </div>
+        <div class="profile-info">
+            <h3>Model.userNickname</h3>
+            <p>Email: Model.correoElectonico</p>
+            <p>Región del Servidor: Model.fkRegionServidor</p>
+            <p>Rango: Model.fkRango</p>
+            <p>Posición: Model.fkPosicion</p>
+            <p>Equipo: Model.fkIdEquipo</p>
+        </div>
+    </div>
+</div>
+
+
+
