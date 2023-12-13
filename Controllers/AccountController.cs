@@ -14,8 +14,7 @@ namespace SummonerMatch
         [HttpGet]
         public IActionResult Login()
         {
-            var usuario = new Usuario();
-            return View(usuario);
+            return View();
         }
 
         [HttpPost]
@@ -26,9 +25,9 @@ namespace SummonerMatch
             if (usuario != null)
             {
                 bool usuarioAutenticado = true;
-                ViewBag.UsuarioAutenticado = usuarioAutenticado;
+                // ViewBag.UsuarioAutenticado = usuarioAutenticado;
 
-                return View("./../Home/Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

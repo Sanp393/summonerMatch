@@ -12,7 +12,7 @@ using SummonerMatch;
 namespace SummonerMatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231213095713_InitialCreate")]
+    [Migration("20231213145353_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
