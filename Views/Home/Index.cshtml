@@ -4,8 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="p-5 w-100 parallax-container" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 13, 14, 1)), url('/assets/Images/HomeWallpaper.jpeg'); position: absolute;
-    z-index: -1;
+<div class="p-5 w-100 parallax-container" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 13, 14, 1)), url('/assets/Images/HomeWallpaper.jpeg');
      background-size: cover; background-position: center;
      background-position: 50% 40%;">
     <div class="jumbotron text-center w-50 m-auto my-5 parallax-content">
@@ -29,64 +28,128 @@ else
     {
         @foreach (var partida in Model)
         {
-            <div class="grupo-partida m-4">
-                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                <h3>
-                    @partida.tituloPartida
-                </h3>
-                <p>
-                    Creada el: @partida.HoraCreacion
-                </p>
-                <div>
-                    @if (partida.posicionTop != null)
-                    {
-                        <img class="iluminada" src="~/img/top.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/img/top.png" alt="">
-                    }
+            @if (partida.posicionTop != null && partida.posicionJungle != null && partida.posicionMid != null && partida.posicionSupport != null && partida.posicionAdc != null)
+            {
+                <div class="grupo-partida m-4" style="border: 2px solid red">
+                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                    <h3>
+                        @partida.tituloPartida
+                    </h3>
+                    <p>
+                        Creada el: @partida.HoraCreacion
+                    </p>
+                    <div>
+                        @if (partida.posicionTop != null)
+                        {
+                            <img class="iluminada" src="~/img/top.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/top.png" alt="">
+                        }
 
-                    @if (partida.posicionJungle != null)
-                    {
-                        <img class="iluminada" src="~/img/jungle.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/img/jungle.png" alt="">
-                    }
+                        @if (partida.posicionJungle != null)
+                        {
+                            <img class="iluminada" src="~/img/jungle.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                        }
 
-                    @if (partida.posicionMid != null)
-                    {
-                        <img class="iluminada" src="~/img/mid.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/img/mid.png" alt="">
-                    }
+                        @if (partida.posicionMid != null)
+                        {
+                            <img class="iluminada" src="~/img/mid.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/mid.png" alt="">
+                        }
 
-                    @if (partida.posicionSupport != null)
-                    {
-                        <img class="iluminada" src="~/img/support.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/img/support.png" alt="">
-                    }
+                        @if (partida.posicionSupport != null)
+                        {
+                            <img class="iluminada" src="~/img/support.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/support.png" alt="">
+                        }
 
-                    @if (partida.posicionAdc != null)
-                    {
-                        <img class="iluminada" src="~/img/adc.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/img/adc.png" alt="">
-                    }
+                        @if (partida.posicionAdc != null)
+                        {
+                            <img class="iluminada" src="~/img/adc.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/adc.png" alt="">
+                        }
+                    </div>
+                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdCardPartida })" style="padding: 16px!important; line-height: 1!important;" class="w-auto">
+                        Unirse
+                    </a>
                 </div>
-                <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdCardPartida })">
-                    Unirse
-                </a>
-            </div>
+            }
+            else
+            {
+                <div class="grupo-partida m-4">
+                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                    <h3>
+                        @partida.tituloPartida
+                    </h3>
+                    <p>
+                        Creada el: @partida.HoraCreacion
+                    </p>
+                    <div>
+                        @if (partida.posicionTop != null)
+                        {
+                            <img class="iluminada" src="~/img/top.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/top.png" alt="">
+                        }
+
+                        @if (partida.posicionJungle != null)
+                        {
+                            <img class="iluminada" src="~/img/jungle.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                        }
+
+                        @if (partida.posicionMid != null)
+                        {
+                            <img class="iluminada" src="~/img/mid.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/mid.png" alt="">
+                        }
+
+                        @if (partida.posicionSupport != null)
+                        {
+                            <img class="iluminada" src="~/img/support.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/support.png" alt="">
+                        }
+
+                        @if (partida.posicionAdc != null)
+                        {
+                            <img class="iluminada" src="~/img/adc.png" alt="">
+                        }
+                        else
+                        {
+                            <img class="no-iluminada" src="~/img/adc.png" alt="">
+                        }
+                    </div>
+                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdCardPartida })" style="padding: 16px!important; line-height: 1!important;" class="w-auto">
+                        Unirse
+                    </a>
+                </div>
+            }
         }
     }
     else
