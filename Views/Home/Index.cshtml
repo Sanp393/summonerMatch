@@ -12,88 +12,88 @@
         <h1 class="display-4 fw-bold mb-3 text-white">Desafía tus límites, conquista la cima!</h1>
         <p class="lead fw-normal mt-5">SummerMatch es tu plataforma para jugar y crear comunidad.</p>
     </div>
-    @* @if (ViewBag.UsuarioAutenticado != null && ViewBag.UsuarioAutenticado)
-    {
+</div>
 
+@if (ViewBag.UsuarioAutenticado != null)
+{
+    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Sesion Iniciada</p>
+}
+else
+{
+    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para entrar en una
+    partida</p>
+}
+
+<div class="d-flex flex-wrap">
+    @if (Model != null)
+    {
+        @foreach (var partida in Model)
+        {
+            <div class="grupo-partida m-4">
+                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                <h3>
+                    @partida.tituloPartida
+                </h3>
+                <p>
+                    Creada el: @partida.HoraCreacion
+                </p>
+                <div>
+                    @if (partida.posicionTop != null)
+                    {
+                        <img class="iluminada" src="~/img/top.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/top.png" alt="">
+                    }
+
+                    @if (partida.posicionJungle != null)
+                    {
+                        <img class="iluminada" src="~/img/jungle.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                    }
+
+                    @if (partida.posicionMid != null)
+                    {
+                        <img class="iluminada" src="~/img/mid.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/mid.png" alt="">
+                    }
+
+                    @if (partida.posicionSupport != null)
+                    {
+                        <img class="iluminada" src="~/img/support.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/support.png" alt="">
+                    }
+
+                    @if (partida.posicionAdc != null)
+                    {
+                        <img class="iluminada" src="~/img/adc.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/adc.png" alt="">
+                    }
+                </div>
+                <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdCardPartida })">
+                    Unirse
+                </a>
+            </div>
+        }
     }
     else
     {
-    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para entrar en una
-    partida</p>
-    } *@
-
-    <div class="d-flex flex-wrap">
-        @if (Model != null)
-        {
-            @foreach (var partida in Model)
-            {
-                <div class="grupo-partida m-4">
-                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                    <h3>
-                        @partida.IdCardPartida
-                    </h3>
-                    <p>
-                        Creada el: @partida.HoraCreacion
-                    </p>
-                    <div>
-                        @if (partida.IdCardPartida != 0)
-                        {
-                            <img class="iluminada" src="~/img/top.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/top.png" alt="">
-                        }
-
-                        @if (partida.IdCardPartida != 0)
-                        {
-                            <img class="iluminada" src="~/img/jungle.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/jungle.png" alt="">
-                        }
-
-                        @if (partida.IdCardPartida != 0)
-                        {
-                            <img class="iluminada" src="~/img/mid.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/mid.png" alt="">
-                        }
-
-                        @if (partida.IdCardPartida != 0)
-                        {
-                            <img class="iluminada" src="~/img/support.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/support.png" alt="">
-                        }
-
-                        @if (partida.IdCardPartida != 0)
-                        {
-                            <img class="iluminada" src="~/img/adc.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/adc.png" alt="">
-                        }
-                    </div>
-                    <a>
-                        Unirse
-                    </a>
-                </div>
-            }
-        }
-        else
-        {
-            <p>
-                No esta pepe
-            </p>
-        }
-
-    </div>
+        <p>
+            No esta pepe
+        </p>
+    }
 </div>
 <div style="height: 3000px;"></div>

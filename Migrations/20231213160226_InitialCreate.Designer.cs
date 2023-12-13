@@ -12,7 +12,7 @@ using SummonerMatch;
 namespace SummonerMatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231213145353_InitialCreate")]
+    [Migration("20231213160226_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,24 @@ namespace SummonerMatch.Migrations
 
                     b.Property<DateTime?>("HoraExpiracion")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("posicionAdc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("posicionJungle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("posicionMid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("posicionSupport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("posicionTop")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("tituloPartida")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCardPartida");
 
