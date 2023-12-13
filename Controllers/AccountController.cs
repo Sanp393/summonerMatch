@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SummonerMatch
 {
@@ -34,6 +36,48 @@ namespace SummonerMatch
                 ModelState.AddModelError(string.Empty, "Credenciales inválidas");
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            ViewData["Rangos"] = _context.Rango.ToList();
+            ViewData["Regiones"] = _context.RegionServidor.ToList();
+            ViewData["Posiciones"] = _context.Posicion.ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(string nomUsr, string nickNm, string eM, string pass, int ran, int reg, int pos)
+        {
+            var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.nombreUsuario == nomUsr);
+
+            if (usuarioExistente != null)
+            {
+                ModelState.AddModelError(string.Empty, "El nombre de usuario ya está en uso");
+                return RedirectToAction("Register");
+            }
+
+            Usuario nuevoUsuario = new Usuario{
+                admin = false,
+                nombreUsuario = nomUsr,
+                userNickname = nickNm,
+                correoElectonico = eM,
+                password = pass,
+                fkRegionServidor = reg,
+                fkRango = ran,
+                fkPosicion = pos,
+                fkImagenPerfil = 1
+
+            };
+
+            _context.Usuario.Add(nuevoUsuario);
+            _context.SaveChanges();
+
+            return RedirectToAction("Login");
         }
     }
 }

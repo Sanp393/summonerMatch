@@ -7,29 +7,29 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 }
 
 <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <form asp-action="Login" asp-controller="Account" method="post" class="align-middle">
+    <form asp-action="Register" asp-controller="Account" method="post" class="align-middle">
         <div class="mb-3 d-flex justify-content-between">
             <div class="w-50 me-1">
-                <label for="username" class="form-label">Nombre de Usuario</label>
-                <input type="text" class="form-control inputRounded" id="username"
-                       name="username" required>
+                <label for="nomUsr" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control inputRounded" id="nomUsr"
+                       name="nomUsr" required>
             </div>
             <div class="w-50 ms-1">
-                <label for="nickname" class="form-label">Nickname</label>
-                <input type="text" class="form-control inputRounded" id="nickname"
-                       name="nickname" required>
+                <label for="nickNm" class="form-label">Nickname</label>
+                <input type="text" class="form-control inputRounded" id="nickNm"
+                       name="nickNm" required>
             </div>
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control inputRounded" id="email" name="email" required>
+            <label for="eM" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control inputRounded" id="eM" name="eM" required>
         </div>
         <div class="mb-4 d-flex justify-content-between">
             <div class="w-50 me-1">
-                <label for="password" class="form-label">Contraseña</label>
+                <label for="pass" class="form-label">Contraseña</label>
                 <div class="input-group">
                     <input type="password" class="form-control" style="border-radius: 10px 0 0 10px; height: 40px;"
-                        id="password" name="password" required>
+                        id="pass" name="pass" required>
                     <button class="menuBtnColor px-3 border-0" type="button" id="togglePassword">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#202024" class="bi bi-eye"
                             viewBox="0 0 16 16">
@@ -42,34 +42,34 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                 </div>
             </div>
             <div class="w-50 ms-1">
-                <label for="passwordConfirm" class="form-label">Confirmar contraseña</label>
+                <label for="passConfirm" class="form-label">Confirmar contraseña</label>
                 <input type="password" class="form-control inputRounded"
-                    id="passwordConfirm" name="passwordConfirm" required>
+                    id="passConfirm" name="passConfirm" required>
             </div>
         </div>
         <div class="mb-3 d-flex justify-content-between">
             <div>
-                <select class="form-select inputRounded" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select name="ran" class="form-select inputRounded" aria-label="Default select example">
+                    @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                    {
+                        <option value="@rango.IdRango">@rango.NombreRango</option>
+                    }
                 </select>
             </div>
             <div class="mx-3">
-                <select class="form-select inputRounded" aria-label="Default select example">
-                    <option selected class="inputRounded">Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select name="reg" class="form-select inputRounded" aria-label="Default select example">
+                    @foreach (var region in ViewData["Regiones"] as List<RegionServidor>)
+                    {
+                        <option value="@region.IdRegionServidor">@region.NombreRegion</option>
+                    }
                 </select>
             </div>
             <div>
-                <select class="form-select inputRounded" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select name="pos" class="form-select inputRounded" aria-label="Default select example">
+                    @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
+                    {
+                        <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
+                    }
                 </select>
             </div>
         </div>
