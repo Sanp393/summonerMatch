@@ -1,21 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using SummonerMatch.Models;
-
-
 
 namespace SummonerMatch;
 
-
-public class ApplicationDbContext : IdentityDbContext<Usuario>
-//public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
         
     }
     
-
     public DbSet<Equipo> Equipo { get; set; }
     public DbSet<ImagenPerfil> ImagenPerfil { get; set; }
     public DbSet<Partida> Partida { get; set; }

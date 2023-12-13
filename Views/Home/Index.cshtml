@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Partida>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,6 +11,78 @@
     <div class="jumbotron text-center w-50 m-auto my-5 parallax-content">
         <h1 class="display-4 fw-bold mb-3 text-white">Desafía tus límites, conquista la cima!</h1>
         <p class="lead fw-normal mt-5">SummerMatch es tu plataforma para jugar y crear comunidad.</p>
+    </div>
+    @if (ViewBag.UsuarioAutenticado != null && ViewBag.UsuarioAutenticado)
+    {
+        
+    }
+    else
+    {
+        <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para entrar en una partida</p>
+    }
+
+    <div class="d-flex flex-wrap">
+        @foreach(var partida in Model)
+        {
+            <div class="grupo-partida m-4">
+                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" alt="">
+                <h3>
+                    @partida.IdCardPartida
+                </h3>
+                <p>
+                    Creada el: @partida.HoraCreacion
+                </p>
+                <div>
+                    @if(partida.IdCardPartida != 0)
+                    {
+                        <img class="iluminada" src="~/img/top.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/top.png" alt="">
+                    }
+
+                    @if(partida.IdCardPartida != 0)
+                    {
+                        <img class="iluminada" src="~/img/jungle.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                    }
+
+                    @if(partida.IdCardPartida != 0)
+                    {
+                        <img class="iluminada" src="~/img/mid.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/mid.png" alt="">
+                    }
+
+                    @if(partida.IdCardPartida != 0)
+                    {
+                        <img class="iluminada" src="~/img/support.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/support.png" alt="">
+                    }
+
+                    @if(partida.IdCardPartida != 0)
+                    {
+                        <img class="iluminada" src="~/img/adc.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/img/adc.png" alt="">
+                    }
+                </div>
+                <a>
+                    Unirse
+                </a>
+            </div>
+        }
     </div>
 </div>
 <div style="height: 3000px;"></div>

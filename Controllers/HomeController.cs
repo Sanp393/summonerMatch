@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SummonerMatch.Models;
 
-namespace SummonerMatch._Controllers
+namespace SummonerMatch
 {
     public class HomeController : Controller
     {
@@ -18,11 +13,9 @@ namespace SummonerMatch._Controllers
 
         public IActionResult Index()
         {
-            /*
-            List<Partida> Partidas = _context.Partidas.ToList();
-            return View(Partidas);
-            */
-            return View();
+            List<Partida> partidas = _context.Partida.ToList();
+
+            return View(partidas);
         }
         
     }
