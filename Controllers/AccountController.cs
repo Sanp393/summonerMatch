@@ -25,9 +25,9 @@ namespace SummonerMatch
             if (usuario != null)
             {
                 bool usuarioAutenticado = true;
-                // ViewBag.UsuarioAutenticado = usuarioAutenticado;
+                ViewBag.UsuarioAutenticado = usuarioAutenticado;
 
-                return RedirectToAction("Index", "Home");
+                return View("./../Home/Index");
             }
             else
             {

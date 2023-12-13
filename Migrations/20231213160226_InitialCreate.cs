@@ -47,8 +47,14 @@ namespace SummonerMatch.Migrations
                 {
                     IdCardPartida = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    tituloPartida = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HoraCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
                     HoraExpiracion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    posicionTop = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    posicionJungle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    posicionMid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    posicionSupport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    posicionAdc = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FkIdCreador = table.Column<int>(type: "int", nullable: true),
                     FkTipoPartida = table.Column<int>(type: "int", nullable: true),
                     FKIdTorneo = table.Column<int>(type: "int", nullable: true)
