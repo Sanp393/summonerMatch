@@ -39,7 +39,9 @@ namespace SummonerMatch
         [HttpGet]
         public IActionResult Profile()
         {
-
+            ViewData["Rangos"] = _context.Rango.ToList();
+            ViewData["Regiones"] = _context.RegionServidor.ToList();
+            ViewData["Posiciones"] = _context.Posicion.ToList();
             return View();
         }
     }
