@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace SummonerMatch
 {
@@ -21,9 +20,9 @@ namespace SummonerMatch
         }
 
         [HttpPost]
-        public IActionResult Login(string nombreUsuario, string password)
+        public IActionResult Login(string nombreUsuario, string contrasena)
         {
-            var usuario = _context.Usuario.FirstOrDefault(u => u.nombreUsuario == nombreUsuario && u.password == password);
+            var usuario = _context.Usuario.FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contrasena == contrasena);
 
             if (usuario != null)
             {
@@ -41,7 +40,7 @@ namespace SummonerMatch
         public IActionResult Register()
         {
             ViewData["Rangos"] = _context.Rango.ToList();
-            ViewData["Regiones"] = _context.RegionServidor.ToList();
+            ViewData["Regiones"] = _context.Region.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
 
             return View();
@@ -50,9 +49,9 @@ namespace SummonerMatch
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(string nomUsr, string nickNm, string eM, string pass, int ran, int reg, int pos)
+        public IActionResult Register(string nombreUsuario, string usuarioLoL, string correoElectronico, string contrasena, int rango, int region, int posicion)
         {
-            var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.nombreUsuario == nomUsr);
+            var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.NombreUsuario == nombreUsuario);
 
             if (usuarioExistente != null)
             {
@@ -61,16 +60,14 @@ namespace SummonerMatch
             }
 
             Usuario nuevoUsuario = new Usuario{
-                admin = false,
-                nombreUsuario = nomUsr,
-                userNickname = nickNm,
-                correoElectonico = eM,
-                password = pass,
-                fkRegionServidor = reg,
-                fkRango = ran,
-                fkPosicion = pos,
-                fkImagenPerfil = 1
-
+                EsAdministrador = false,
+                NombreUsuario = nombreUsuario,
+                UsuarioLoL = usuarioLoL,
+                CorreoElectronico = correoElectronico,
+                Contrasena = contrasena,
+                FkRegion = region,
+                FkRango = rango,
+                FkPosicion = posicion
             };
 
             _context.Usuario.Add(nuevoUsuario);

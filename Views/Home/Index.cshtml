@@ -24,18 +24,18 @@
     {
         @foreach (var partida in Model)
         {
-            @if (partida.posicionTop != null && partida.posicionJungle != null && partida.posicionMid != null && partida.posicionSupport != null && partida.posicionAdc != null)
+            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null && partida.JugadorSupport != null && partida.JugadorAdc != null)
             {
                 <div class="grupo-partida m-4" style="border: 2px solid red">
                     <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
                     <h3>
-                        @partida.tituloPartida
+                        @partida.Titulo
                     </h3>
                     <p>
-                        Creada el: @partida.HoraCreacion
+                        Creada el: @partida.FechaCreacion
                     </p>
                     <div>
-                        @if (partida.posicionTop != null)
+                        @if (partida.JugadorTop != null)
                         {
                             <img class="iluminada" src="~/img/top.png" alt="">
                         }
@@ -44,7 +44,7 @@
                             <img class="no-iluminada" src="~/img/top.png" alt="">
                         }
 
-                        @if (partida.posicionJungle != null)
+                        @if (partida.JugadorJungle != null)
                         {
                             <img class="iluminada" src="~/img/jungle.png" alt="">
                         }
@@ -53,7 +53,7 @@
                             <img class="no-iluminada" src="~/img/jungle.png" alt="">
                         }
 
-                        @if (partida.posicionMid != null)
+                        @if (partida.JugadorMid != null)
                         {
                             <img class="iluminada" src="~/img/mid.png" alt="">
                         }
@@ -62,7 +62,7 @@
                             <img class="no-iluminada" src="~/img/mid.png" alt="">
                         }
 
-                        @if (partida.posicionSupport != null)
+                        @if (partida.JugadorSupport != null)
                         {
                             <img class="iluminada" src="~/img/support.png" alt="">
                         }
@@ -71,7 +71,7 @@
                             <img class="no-iluminada" src="~/img/support.png" alt="">
                         }
 
-                        @if (partida.posicionAdc != null)
+                        @if (partida.JugadorAdc != null)
                         {
                             <img class="iluminada" src="~/img/adc.png" alt="">
                         }
@@ -90,13 +90,13 @@
                 <div class="grupo-partida m-4">
                     <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
                     <h3>
-                        @partida.tituloPartida
+                        @partida.Titulo
                     </h3>
                     <p>
-                        Creada el: @partida.HoraCreacion
+                        Creada el: @partida.FechaCreacion
                     </p>
                     <div>
-                        @if (partida.posicionTop != null)
+                        @if (partida.JugadorTop != null)
                         {
                             <img class="iluminada" src="~/img/top.png" alt="">
                         }
@@ -105,7 +105,7 @@
                             <img class="no-iluminada" src="~/img/top.png" alt="">
                         }
 
-                        @if (partida.posicionJungle != null)
+                        @if (partida.JugadorJungle != null)
                         {
                             <img class="iluminada" src="~/img/jungle.png" alt="">
                         }
@@ -114,7 +114,7 @@
                             <img class="no-iluminada" src="~/img/jungle.png" alt="">
                         }
 
-                        @if (partida.posicionMid != null)
+                        @if (partida.JugadorMid != null)
                         {
                             <img class="iluminada" src="~/img/mid.png" alt="">
                         }
@@ -123,7 +123,7 @@
                             <img class="no-iluminada" src="~/img/mid.png" alt="">
                         }
 
-                        @if (partida.posicionSupport != null)
+                        @if (partida.JugadorSupport != null)
                         {
                             <img class="iluminada" src="~/img/support.png" alt="">
                         }
@@ -132,7 +132,7 @@
                             <img class="no-iluminada" src="~/img/support.png" alt="">
                         }
 
-                        @if (partida.posicionAdc != null)
+                        @if (partida.JugadorAdc != null)
                         {
                             <img class="iluminada" src="~/img/adc.png" alt="">
                         }
@@ -141,7 +141,7 @@
                             <img class="no-iluminada" src="~/img/adc.png" alt="">
                         }
                     </div>
-                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdCardPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #373" class="w-auto">
+                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #373" class="w-auto">
                         Unirse
                     </a>
                 </div>
