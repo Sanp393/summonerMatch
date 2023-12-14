@@ -6,9 +6,7 @@ namespace SummonerMatch
     {
         [Key]
         public int IdTorneo { get; set; }
-        public string? NombreTorneo { get; set; }
-        public string? DescripcionTorneo { get; set; }
-        public int? CantEquipos { get; set; }
-        public int? FkIdCreador { get; set; }
+        public string? Titulo { get; set; }
+        public int? CantidadEquipos { get; set; }
     }
 }

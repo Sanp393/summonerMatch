@@ -5,18 +5,16 @@ namespace SummonerMatch
     public class Usuario
     {
         [Key]
-        public int idUsuario { get; set; }
-        public bool? admin { get; set; }
-        public string? nombreUsuario { get; set; }
-        public string? userNickname { get; set; }
-        public string? correoElectonico { get; set; }
-        public string? password { get; set; }
-        public string imagenPerfil { get; set; }
-        public int? fkRegionServidor { get; set; }
-        public int? fkRango { get; set; }
-        public int? fkPosicion { get; set; }
-        public int? fkImagenPerfil { get; set; }
-        public int? fkIdEquipo { get; set; }
-
+        public int IdUsuario { get; set; }
+        public bool? EsAdministrador { get; set; }
+        public string? NombreUsuario { get; set; }
+        public string? UsuarioLoL { get; set; }
+        public string? CorreoElectronico { get; set; }
+        public string? Contrasena { get; set; }
+        public string? ImagenPerfil { get; set; }
+        public int? FkPosicion { get; set; }
+        public int? FkRango { get; set; }
+        public int? FkRegion { get; set; }
+        public int? FkValoracion { get; set; }
     }
 }
