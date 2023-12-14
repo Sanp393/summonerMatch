@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.Json;
 
 namespace SummonerMatch
 {
@@ -26,10 +27,8 @@ namespace SummonerMatch
 
             if (usuario != null)
             {
-                bool usuarioAutenticado = true;
-                ViewBag.UsuarioAutenticado = usuarioAutenticado;
-
-                return View("./../Home/Index");
+                HttpContext.Session.SetObject("Usuario", usuario);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -87,6 +86,21 @@ namespace SummonerMatch
             ViewData["Regiones"] = _context.RegionServidor.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
             return View();
+        }
+    }
+
+    public static class SessionExtensions
+    {
+        public static void SetObject(this ISession session, string key, object value)
+        {
+            var json = JsonSerializer.Serialize(value);
+            session.SetString(key, json);
+        }
+
+        public static T GetObject<T>(this ISession session, string key)
+        {
+            var json = session.GetString(key);
+            return json == null ? default : JsonSerializer.Deserialize<T>(json);
         }
     }
 }
