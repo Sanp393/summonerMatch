@@ -70,7 +70,7 @@ namespace SummonerMatch
                 fkRegionServidor = reg,
                 fkRango = ran,
                 fkPosicion = pos,
-                imagenPerfil = "default",
+                imagenPerfil = "LogoLoL",
 
             };
 

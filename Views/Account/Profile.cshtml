@@ -7,96 +7,97 @@
     z-index: -1;
      background-size: cover; background-position: center;
      background-position: 50% 40%;">
-    <div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
-        <form asp-action="Profile" asp-controller="Account" method="post" class="align-middle">
-            <div class="mb-5 container-fluid d-flex justify-content-center align-items-center">
+    
+</div>
 
-                <button class="btn btn-lg border-0 p-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#imageModal">
-                    <img class="rounded-circle img-fluid" src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" />
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body container">
-                                <div class="row">
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                    <div class="col-md-4"><img src="~/assets/images/imgProfile/elise.jpg" alt="Foto de perfil" class="img-fluid" /></div>
-                                </div>
+<div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
+    <form asp-action="Profile" asp-controller="Account" method="post" class="align-middle">
+        <div class="mb-5 container-fluid d-flex justify-content-center align-items-center">
+
+            <button class="btn btn-lg border-0 p-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <img class="rounded-circle img-fluid" src="~/assets/images/imgProfile/LogoLoL.jpg" alt="Foto de perfil" />
+            </button>
+
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body container">
+                            <div class="row">
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Rengar.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Riven.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Rumble.jpg" alt="Foto de perfil" class="img-fluid" /></div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <div class="row">
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Ryze.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Sejuani.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Senna.jpg" alt="Foto de perfil" class="img-fluid" /></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Seraphine.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Shyvana.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                                <div class="col-md-4"><img src="~/assets/images/imgProfile/Soraka.jpg" alt="Foto de perfil" class="img-fluid" /></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="nickname" class="form-label">Nickname:</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="nickname" name="nickname" value="ValorDelNickname" readonly>
-                    <button type="button" class="btn btn-secondary" id="modifyNicknameBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="nickname" name="nickname" value="ValorDelNickname" readonly>
+                <button type="button" class="btn btn-secondary" id="modifyNicknameBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                    </svg>
+                </button>
             </div>
+        </div>
 
-            <script>
-                document.getElementById('modifyNicknameBtn').addEventListener('click', function () {
-                    var nicknameInput = document.getElementById('nickname');
-                    nicknameInput.removeAttribute('readonly');
-                    nicknameInput.focus(); // Coloca el foco en el input para que el usuario pueda comenzar a escribir
-                });
-            </script>
+        <script>
+            document.getElementById('modifyNicknameBtn').addEventListener('click', function () {
+                var nicknameInput = document.getElementById('nickname');
+                nicknameInput.removeAttribute('readonly');
+                nicknameInput.focus(); // Coloca el foco en el input para que el usuario pueda comenzar a escribir
+            });
+        </script>
 
+        <div class="mb-3 d-flex justify-content-between">
+            <!-- Resto del formulario -->
             <div class="mb-3 d-flex justify-content-between">
-                <!-- Resto del formulario -->
-                <div class="mb-3 d-flex justify-content-between">
-                    <div>
-                        <select class="form-select inputRounded" aria-label="Default select example">
-                            @foreach (var rango in ViewData["Rangos"] as List<Rango>)
-                            {
-                                <option value="@rango.IdRango">@rango.NombreRango</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mx-3">
-                        <select class="form-select inputRounded" aria-label="Default select example">
-                            @foreach (var region in ViewData["Regiones"] as List<RegionServidor>)
-                            {
-                                <option value="@region.IdRegionServidor">@region.NombreRegion</option>
-                            }
-                        </select>
-                    </div>
-                    <div>
-                        <select class="form-select inputRounded" aria-label="Default select example">
-                            @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
-                            {
-                                <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
-                            }
-                        </select>
-                    </div>
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example">
+                        @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                        {
+                            <option value="@rango.IdRango">@rango.NombreRango</option>
+                        }
+                    </select>
+                </div>
+                <div class="mx-3">
+                    <select class="form-select inputRounded" aria-label="Default select example">
+                        @foreach (var region in ViewData["Regiones"] as List<RegionServidor>)
+                        {
+                            <option value="@region.IdRegionServidor">@region.NombreRegion</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example">
+                        @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
+                        {
+                            <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
+                        }
+                    </select>
                 </div>
             </div>
-            <div class="mb-3 d-flex ">
-                <button type="submit" class="btn menuBtnColor w-100">Guardar Cambios</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="mb-3 d-flex ">
+            <button type="submit" class="btn menuBtnColor w-100">Guardar Cambios</button>
+        </div>
+    </form>
 </div>
-
-
