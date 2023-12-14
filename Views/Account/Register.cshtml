@@ -10,26 +10,26 @@ For more information on enabling MVC for empty projects, visit https://go.micros
     <form asp-action="Register" asp-controller="Account" method="post" class="align-middle">
         <div class="mb-3 d-flex justify-content-between">
             <div class="w-50 me-1">
-                <label for="nomUsr" class="form-label">Nombre de Usuario</label>
-                <input type="text" class="form-control inputRounded" id="nomUsr"
-                       name="nomUsr" required>
+                <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control inputRounded" id="nombreUsuario"
+                       name="nombreUsuario" required>
             </div>
             <div class="w-50 ms-1">
-                <label for="nickNm" class="form-label">Nickname</label>
-                <input type="text" class="form-control inputRounded" id="nickNm"
-                       name="nickNm" required>
+                <label for="usuarioLoL" class="form-label">Nickname</label>
+                <input type="text" class="form-control inputRounded" id="usuarioLoL"
+                       name="usuarioLoL" required>
             </div>
         </div>
         <div class="mb-3">
-            <label for="eM" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control inputRounded" id="eM" name="eM" required>
+            <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control inputRounded" id="correoElectronico" name="correoElectronico" required>
         </div>
         <div class="mb-4 d-flex justify-content-between">
             <div class="w-50 me-1">
-                <label for="pass" class="form-label">Contraseña</label>
+                <label for="contrasena" class="form-label">Contraseña</label>
                 <div class="input-group">
                     <input type="password" class="form-control" style="border-radius: 10px 0 0 10px; height: 40px;"
-                        id="pass" name="pass" required>
+                           id="contrasena" name="contrasena" required>
                     <button class="menuBtnColor px-3 border-0" type="button" id="togglePassword">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#202024" class="bi bi-eye"
                             viewBox="0 0 16 16">
@@ -49,7 +49,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
         </div>
         <div class="mb-3 d-flex justify-content-between">
             <div>
-                <select name="ran" class="form-select inputRounded" aria-label="Default select example">
+                <select name="rango" class="form-select inputRounded" aria-label="Default select example">
                     @foreach (var rango in ViewData["Rangos"] as List<Rango>)
                     {
                         <option value="@rango.IdRango">@rango.NombreRango</option>
@@ -57,7 +57,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                 </select>
             </div>
             <div class="mx-3">
-                <select name="reg" class="form-select inputRounded" aria-label="Default select example">
+                <select name="region" class="form-select inputRounded" aria-label="Default select example">
                     @foreach (var region in ViewData["Regiones"] as List<Region>)
                     {
                         <option value="@region.IdRegion">@region.NombreRegion</option>
@@ -65,7 +65,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                 </select>
             </div>
             <div>
-                <select name="pos" class="form-select inputRounded" aria-label="Default select example">
+                <select name="posicion" class="form-select inputRounded" aria-label="Default select example">
                     @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
                     {
                         <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>

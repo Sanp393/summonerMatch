@@ -67,7 +67,7 @@ namespace SummonerMatch
                 Contrasena = contrasena,
                 FkRegion = region,
                 FkRango = rango,
-                FkPosicion = posicion
+                FkPosicion = posicion,
                 ImagenPerfil = "LogoLoL",
             };
 
@@ -81,7 +81,7 @@ namespace SummonerMatch
         public IActionResult Profile()
         {
             ViewData["Rangos"] = _context.Rango.ToList();
-            ViewData["Regiones"] = _context.RegionServidor.ToList();
+            ViewData["Regiones"] = _context.Region.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
             return View();
         }
@@ -91,16 +91,30 @@ namespace SummonerMatch
         {        
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
 
-            usuario.userNickname = nickname;
-            usuario.fkRango = rango;
-            usuario.fkRegionServidor = region;
-            usuario.fkPosicion = posicion;
-            usuario.imagenPerfil = imgPerfil;
+            usuario.UsuarioLoL = nickname;
+            usuario.FkRango = rango;
+            usuario.FkRegion = region;
+            usuario.FkPosicion = posicion;
+            usuario.ImagenPerfil = imgPerfil;
 
             HttpContext.Session.SetObject("Usuario", usuario);
+            _context.Update(usuario);
             _context.SaveChanges();
 
             return RedirectToAction("Profile", "Account");
+        }
+
+        [HttpPost]
+        public IActionResult cambiarImagePerfil(string fileName)
+        {
+            var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
+
+            usuario.ImagenPerfil = fileName;
+
+            _context.Update(usuario);
+            _context.SaveChanges();
+
+            return View();
         }
 
     }
