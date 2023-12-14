@@ -19,14 +19,34 @@
     <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una partida</p>
 }
 
-<div class="d-flex flex-wrap justify-center">
-    @if (Model != null)
+<div class="d-flex flex-wrap justify-content-center">
+    @* Si existen partidas *@
+    @if (@Model != null)
     {
+        @* Recorrer partidas *@
         @foreach (var partida in Model)
         {
+            @* Si la partida está llena *@
             @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null && partida.JugadorSupport != null && partida.JugadorAdc != null)
             {
                 <div class="grupo-partida m-4" style="border: 2px solid red">
+                    @* Si es torneo *@
+                    @if (partida.FkTorneo != null)
+                    {
+                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                    <h3>
+                        Torneo @partida.FkTorneo
+                    </h3>
+                    <p>
+                        Creada el: @partida.FechaCreacion
+                    </p>
+                    <p>
+                        Cantidad equipos: 
+                    </p>
+                    }
+                    @* Si es partida normal *@
+                    else
+                    {
                     <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
                     <h3>
                         @partida.Titulo
@@ -37,49 +57,50 @@
                     <div>
                         @if (partida.JugadorTop != null)
                         {
-                            <img class="iluminada" src="~/img/top.png" alt="">
+                        <img class="iluminada" src="~/img/top.png" alt="">
                         }
                         else
                         {
-                            <img class="no-iluminada" src="~/img/top.png" alt="">
+                        <img class="no-iluminada" src="~/img/top.png" alt="">
                         }
 
                         @if (partida.JugadorJungle != null)
                         {
-                            <img class="iluminada" src="~/img/jungle.png" alt="">
+                        <img class="iluminada" src="~/img/jungle.png" alt="">
                         }
                         else
                         {
-                            <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                        <img class="no-iluminada" src="~/img/jungle.png" alt="">
                         }
 
                         @if (partida.JugadorMid != null)
                         {
-                            <img class="iluminada" src="~/img/mid.png" alt="">
+                        <img class="iluminada" src="~/img/mid.png" alt="">
                         }
                         else
                         {
-                            <img class="no-iluminada" src="~/img/mid.png" alt="">
+                        <img class="no-iluminada" src="~/img/mid.png" alt="">
                         }
 
                         @if (partida.JugadorSupport != null)
                         {
-                            <img class="iluminada" src="~/img/support.png" alt="">
+                        <img class="iluminada" src="~/img/support.png" alt="">
                         }
                         else
                         {
-                            <img class="no-iluminada" src="~/img/support.png" alt="">
+                        <img class="no-iluminada" src="~/img/support.png" alt="">
                         }
 
                         @if (partida.JugadorAdc != null)
                         {
-                            <img class="iluminada" src="~/img/adc.png" alt="">
+                        <img class="iluminada" src="~/img/adc.png" alt="">
                         }
                         else
                         {
-                            <img class="no-iluminada" src="~/img/adc.png" alt="">
+                        <img class="no-iluminada" src="~/img/adc.png" alt="">
                         }
                     </div>
+                    }
                     <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
                         Grupo lleno
                     </a>
@@ -87,72 +108,84 @@
             }
             else
             {
-                <div class="grupo-partida m-4">
-                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                    <h3>
-                        @partida.Titulo
-                    </h3>
-                    <p>
-                        Creada el: @partida.FechaCreacion
-                    </p>
-                    <div>
-                        @if (partida.JugadorTop != null)
-                        {
-                            <img class="iluminada" src="~/img/top.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/top.png" alt="">
-                        }
+            <div class="grupo-partida m-4">
+                @* Si es torneo *@
+                @if (partida.FkTorneo != null)
+                {
+                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                <h3>
+                    Torneo @partida.FkTorneo
+                </h3>
+                <p>
+                    Creada el: @partida.FechaCreacion
+                </p>
+                <p>
+                    Cantidad equipos: 
+                </p>
+                }
+                @* Si es partida normal *@
+                else
+                {
+                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                <h3>
+                    @partida.Titulo
+                </h3>
+                <p>
+                    Creada el: @partida.FechaCreacion
+                </p>
+                <div>
+                    @if (partida.JugadorTop != null)
+                    {
+                    <img class="iluminada" src="~/img/top.png" alt="">
+                    }
+                    else
+                    {
+                    <img class="no-iluminada" src="~/img/top.png" alt="">
+                    }
 
-                        @if (partida.JugadorJungle != null)
-                        {
-                            <img class="iluminada" src="~/img/jungle.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/jungle.png" alt="">
-                        }
+                    @if (partida.JugadorJungle != null)
+                    {
+                    <img class="iluminada" src="~/img/jungle.png" alt="">
+                    }
+                    else
+                    {
+                    <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                    }
 
-                        @if (partida.JugadorMid != null)
-                        {
-                            <img class="iluminada" src="~/img/mid.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/mid.png" alt="">
-                        }
+                    @if (partida.JugadorMid != null)
+                    {
+                    <img class="iluminada" src="~/img/mid.png" alt="">
+                    }
+                    else
+                    {
+                    <img class="no-iluminada" src="~/img/mid.png" alt="">
+                    }
 
-                        @if (partida.JugadorSupport != null)
-                        {
-                            <img class="iluminada" src="~/img/support.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/support.png" alt="">
-                        }
+                    @if (partida.JugadorSupport != null)
+                    {
+                    <img class="iluminada" src="~/img/support.png" alt="">
+                    }
+                    else
+                    {
+                    <img class="no-iluminada" src="~/img/support.png" alt="">
+                    }
 
-                        @if (partida.JugadorAdc != null)
-                        {
-                            <img class="iluminada" src="~/img/adc.png" alt="">
-                        }
-                        else
-                        {
-                            <img class="no-iluminada" src="~/img/adc.png" alt="">
-                        }
-                    </div>
-                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #373" class="w-auto">
-                        Unirse
-                    </a>
+                    @if (partida.JugadorAdc != null)
+                    {
+                    <img class="iluminada" src="~/img/adc.png" alt="">
+                    }
+                    else
+                    {
+                    <img class="no-iluminada" src="~/img/adc.png" alt="">
+                    }
                 </div>
+                }
+                <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
+                    Grupo lleno
+                </a>
+            </div>
             }
         }
-    }
-    else
-    {
-        <p style="font-size: 30px; margin-top: 40px; text-align: center; color: white; display: inline-block">
-            No hay partidas disponibles
-        </p>
     }
 </div>
 <div style="height: 3000px;"></div>
