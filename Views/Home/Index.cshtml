@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
 }
 
 <div class="p-5 w-100 parallax-container" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 13, 14, 1)), url('/assets/Images/HomeWallpaper.jpeg');
@@ -13,7 +14,7 @@
     </div>
 </div>
 
-@if (ViewBag.UsuarioAutenticado != null)
+@if (@usuario != null)
 {
     <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Sesion Iniciada</p>
 }

@@ -20,8 +20,10 @@
                     <img src="~/assets/logos/SummonerMatchIcon.svg" class="d-inline-block d-sm-none ps-2" alt="SummonerMatch" height="30" />
                     <img src="~/assets/logos/SummonerMatchText.svg" class="d-none d-sm-inline-block" alt="SummonerMatch" height="20" />
                 </a>
-
-                @if (true)
+                @{
+                    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
+                }
+                @if (@usuario == null)
                 {
                     <button class="navbar-toggler border border-0" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
