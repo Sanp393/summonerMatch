@@ -42,7 +42,7 @@ namespace SummonerMatch
             ViewData["Rangos"] = _context.Rango.ToList();
             ViewData["Regiones"] = _context.Region.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
-
+            
             return View();
         }
 
@@ -68,6 +68,7 @@ namespace SummonerMatch
                 FkRegion = region,
                 FkRango = rango,
                 FkPosicion = posicion
+                ImagenPerfil = "LogoLoL",
             };
 
             _context.Usuario.Add(nuevoUsuario);
@@ -75,6 +76,33 @@ namespace SummonerMatch
 
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            ViewData["Rangos"] = _context.Rango.ToList();
+            ViewData["Regiones"] = _context.RegionServidor.ToList();
+            ViewData["Posiciones"] = _context.Posicion.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion, string imgPerfil)
+        {        
+            var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
+
+            usuario.userNickname = nickname;
+            usuario.fkRango = rango;
+            usuario.fkRegionServidor = region;
+            usuario.fkPosicion = posicion;
+            usuario.imagenPerfil = imgPerfil;
+
+            HttpContext.Session.SetObject("Usuario", usuario);
+            _context.SaveChanges();
+
+            return RedirectToAction("Profile", "Account");
+        }
+
     }
 
     public static class SessionExtensions
