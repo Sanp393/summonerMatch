@@ -40,11 +40,10 @@ namespace SummonerMatch
         [HttpGet]
         public IActionResult Register()
         {
-
             ViewData["Rangos"] = _context.Rango.ToList();
             ViewData["Regiones"] = _context.RegionServidor.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
-
+            
             return View();
         }
 
@@ -88,6 +87,24 @@ namespace SummonerMatch
             ViewData["Posiciones"] = _context.Posicion.ToList();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion, string imgPerfil)
+        {        
+            var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
+
+            usuario.userNickname = nickname;
+            usuario.fkRango = rango;
+            usuario.fkRegionServidor = region;
+            usuario.fkPosicion = posicion;
+            usuario.imagenPerfil = imgPerfil;
+
+            HttpContext.Session.SetObject("Usuario", usuario);
+            _context.SaveChanges();
+
+            return RedirectToAction("Profile", "Account");
+        }
+
     }
 
     public static class SessionExtensions
