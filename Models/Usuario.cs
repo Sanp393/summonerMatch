@@ -17,6 +17,8 @@ namespace SummonerMatch
         public int? fkImagenPerfil { get; set; }
         public int? fkIdEquipo { get; set; }
 
+        public string imagenPerfil { get; set; } 
+
         public bool usuarioAutenticado = false;
     }
 }

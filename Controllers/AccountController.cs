@@ -61,7 +61,7 @@ namespace SummonerMatch
                 return RedirectToAction("Register");
             }
 
-            Usuario nuevoUsuario = new Usuario{
+            Usuario nuevoUsuario = new Usuario {
                 admin = false,
                 nombreUsuario = nomUsr,
                 userNickname = nickNm,
@@ -70,7 +70,7 @@ namespace SummonerMatch
                 fkRegionServidor = reg,
                 fkRango = ran,
                 fkPosicion = pos,
-                fkImagenPerfil = 1
+                imagenPerfil = "default",
 
             };
 
