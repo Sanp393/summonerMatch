@@ -40,6 +40,7 @@ namespace SummonerMatch
         [HttpGet]
         public IActionResult Register()
         {
+
             ViewData["Rangos"] = _context.Rango.ToList();
             ViewData["Regiones"] = _context.RegionServidor.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
