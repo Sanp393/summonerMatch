@@ -12,7 +12,7 @@ namespace SummonerMatch
         }
 
         [HttpGet]
-        public IActionResult Index(int Id)
+        public IActionResult DetallesPartida(int Id)
         {
             var partidaBuscada = _context.Partida.FirstOrDefault(partida => partida.IdPartida == Id);
             return View(partidaBuscada);

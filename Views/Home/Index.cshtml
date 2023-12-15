@@ -190,7 +190,7 @@
                 }
                 @if (@usuario != null)
                 {
-                    <a href="@Url.Action("Index", "Partida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
+                    <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
                         Unirse
                     </a>
                 }
