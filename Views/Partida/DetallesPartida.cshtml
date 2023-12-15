@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");  
 }
 
 <div style="position: relative; margin: 40px auto; width: 75%; height: 400px;" class="d-flex justify-content-center">
@@ -39,7 +40,7 @@
         <div style="display: flex;">
             @if (@Model.JugadorTop == null)
             {
-            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "top", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                 Unirse
             </a>
             }
@@ -50,7 +51,7 @@
         <div style="display: flex;">
             @if (@Model.JugadorJungle == null)
             {
-            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "jungle", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                 Unirse
             </a>
             }
@@ -61,7 +62,7 @@
         <div style="display: flex;">
             @if (@Model.JugadorMid == null)
             {
-            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "mid", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                 Unirse
             </a>
             }
@@ -72,7 +73,7 @@
         <div style="display: flex;">
             @if (@Model.JugadorSupport == null)
             {
-            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "support", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                 Unirse
             </a>
             }
@@ -83,7 +84,7 @@
         <div style="display: flex;">
             @if (@Model.JugadorAdc == null)
             {
-            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "adc", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                 Unirse
             </a>
             }

@@ -18,13 +18,41 @@ namespace SummonerMatch
             return View(partidaBuscada);
         }
 
+        public IActionResult UnirsePosicion(int idPartida, string posicion, string usuarioLoL)
+        {
+            var partidaBuscada = _context.Partida.FirstOrDefault(partida => partida.IdPartida == idPartida);
+
+            switch(posicion)
+            {
+                case "top":
+                    partidaBuscada.JugadorTop = usuarioLoL;
+                    break;
+                case "jungle":
+                    partidaBuscada.JugadorJungle = usuarioLoL;
+                    break;
+                case "mid":
+                    partidaBuscada.JugadorMid = usuarioLoL;
+                    break;
+                case "support":
+                    partidaBuscada.JugadorSupport = usuarioLoL;
+                    break;
+                case "adc":
+                    partidaBuscada.JugadorAdc = usuarioLoL;
+                    break;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("DetallesPartida", "Partida", new { Id = idPartida });
+        }
+
         [HttpPost]
         public IActionResult CrearPartida(string title, int tipoPartida)
         {
             var partidaExistente = _context.Partida.FirstOrDefault(p => p.Titulo == title);
             if (partidaExistente != null)
             {
-                ModelState.AddModelError(string.Empty, "Ya existe una partida con este título");
+                ModelState.AddModelError(string.Empty, "Ya existe una partida con este tï¿½tulo");
                 return RedirectToAction("Index", "Home");
             }
 

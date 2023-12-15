@@ -65,8 +65,7 @@
         @foreach (var partida in Model)
         {
             @* Si la partida está llena *@
-            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null &&
-           partida.JugadorSupport != null && partida.JugadorAdc != null)
+            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null && partida.JugadorSupport != null && partida.JugadorAdc != null)
             {
                 <div class="grupo-partida m-4" style="border: 2px solid red">
                     @* Si es torneo *@
