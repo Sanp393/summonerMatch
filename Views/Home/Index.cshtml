@@ -19,7 +19,8 @@
 @* Si el usuario no ha iniciado sesión *@
 @if (@usuario == null)
 {
-    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una partida</p>
+    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una
+        partida</p>
 }
 
 @if (@usuario != null)
@@ -64,7 +65,8 @@
         @foreach (var partida in Model)
         {
             @* Si la partida está llena *@
-            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null && partida.JugadorSupport != null && partida.JugadorAdc != null)
+            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null &&
+           partida.JugadorSupport != null && partida.JugadorAdc != null)
             {
                 <div class="grupo-partida m-4" style="border: 2px solid red">
                     @* Si es torneo *@
@@ -72,7 +74,8 @@
                     {
                         var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
 
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
+                            alt="">
                         <h3>
                             Torneo @partida.FkTorneo
                         </h3>
@@ -86,7 +89,8 @@
                     @* Si es partida normal *@
                     else
                     {
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
+                            alt="">
                         <h3>
                             @partida.Titulo
                         </h3>
@@ -154,7 +158,8 @@
                     {
                         var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
 
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
+                            alt="">
                         <h3>
                             Torneo @partida.FkTorneo
                         </h3>
@@ -168,7 +173,8 @@
                     @* Si es partida normal *@
                     else
                     {
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
+                            alt="">
                         <h3>
                             @partida.Titulo
                         </h3>
@@ -224,13 +230,38 @@
                     }
                     @if (@usuario != null)
                     {
-                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
+                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })"
+                            style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
                             Unirse
                         </a>
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
+                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })"
+                            style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
+                            Iniciar sesión
+                        </a>
+                    }
+                    @if (partida.JugadorAdc != null)
+                    {
+                        <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                    }
+                    else
+                    {
+                        <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                    }
+                    }
+                    @if (@usuario != null)
+                    {
+                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })"
+                            style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
+                            Unirse
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })"
+                            style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
                             Iniciar sesión
                         </a>
                     }
