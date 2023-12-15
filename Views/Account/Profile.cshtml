@@ -1,5 +1,121 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Perfil";
+    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");     
 }
+
+<div class="p-5 w-100 parallax-container" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 13, 14, 1)), url('/assets/Images/HomeWallpaper.jpeg'); position: absolute;
+    z-index: -1;
+     background-size: cover; background-position: center;
+     background-position: 50% 40%;">
+    
+</div>
+
+<div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
+    <form asp-action="UpdateProfile" asp-controller="Account" method="post" class="align-middle">
+        <div class="mb-5 container-fluid d-flex justify-content-center align-items-center">
+            <button class="btn btn-lg border-0 p-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <img class="rounded-circle img-fluid" src="~/assets/images/imgProfile/LogoLoL.jpg" alt="Foto de perfil" />
+            </button>
+            <input type="text" class="d-none" id="imgPerfil" name="imgPerfil" value="@usuario.ImagenPerfil" readonly>
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body container">
+                            <div class="row">
+                                <!-- Use buttons instead of images in the modal -->
+                                
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Rengar.jpg')">Rengar</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Riven.jpg')">Riven</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Rumble.jpg')">Rumble</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Ryze.jpg')">Ryze</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Sejuani.jpg')">Sejuani</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Senna.jpg')">Senna</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Seraphine.jpg')">Seraphine</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Shyvana.jpg')">Shyvana</button></div>
+                                <div class="col-md-4"><button class="btn btn-link" onclick="changeProfileImage('~/assets/images/imgProfile/Soraka.jpg')">Soraka</button></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="nickname" name="nickname" value="@usuario.NombreUsuario" readonly>
+                <button type="button" class="btn btn-secondary" id="modifyNicknameBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <!-- Resto del formulario -->
+            <div class="mb-3 d-flex justify-content-between">
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="rango" id="rangoSelect">
+                        <option value="@usuario.FkRango" selected>@usuario.FkRango</option>
+                        @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                        {
+                            <option value="@rango.IdRango">@rango.NombreRango</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="region" id="regionSelect">
+                        <option value="@usuario.FkRegion" selected>@usuario.FkRegion</option>
+                        @foreach (var region in ViewData["Regiones"] as List<Region>)
+                        {
+                            <option value="@region.IdRegion">@region.NombreRegion</option>
+                        }
+                    </select>
+                </div>
+
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="posicion" id="posicionSelect">
+                        <option value="@usuario.FkPosicion" selected>@usuario.FkPosicion</option>
+                        @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
+                        {
+                            <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-3 d-flex ">
+            <button type="submit" class="btn menuBtnColor w-100">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    //script para cambiar el nombre del nickname
+    document.getElementById('modifyNicknameBtn').addEventListener('click', function () {
+        var nicknameInput = document.getElementById('nickname');
+        nicknameInput.removeAttribute('readonly');
+        nicknameInput.focus(); // Coloca el foco en el input para que el usuario pueda comenzar a escribir
+    });
+
+    //script cambiar imagen perfil
+    function changeProfileImage(imageUrl) {
+        // Change the source of the profile image
+        document.querySelector('.rounded-circle.img-fluid').src = imageUrl;
+        // Close the modal
+        $('#imageModal').modal('hide');
+        $('#imgPerfil').html(imageUrl);
+    }
+</script>

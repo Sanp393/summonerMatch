@@ -15,13 +15,14 @@ namespace SummonerMatch.Migrations
                 {
                     IdEquipo = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PosicionTop = table.Column<bool>(type: "bit", nullable: true),
-                    PosicionMid = table.Column<bool>(type: "bit", nullable: true),
-                    PosicionJungla = table.Column<bool>(type: "bit", nullable: true),
-                    PosicionSupport = table.Column<bool>(type: "bit", nullable: true),
-                    PosicionAdc = table.Column<bool>(type: "bit", nullable: true),
-                    FkRangoEquipo = table.Column<int>(type: "int", nullable: true),
-                    IdPartida = table.Column<int>(type: "int", nullable: true)
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    JugadorTop = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorJungle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorMid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorSupport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorAdc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkPartida = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,39 +30,26 @@ namespace SummonerMatch.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImagenPerfil",
-                columns: table => new
-                {
-                    IdImagenPerfil = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArchivoImagen = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImagenPerfil", x => x.IdImagenPerfil);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Partida",
                 columns: table => new
                 {
-                    IdCardPartida = table.Column<int>(type: "int", nullable: false)
+                    IdPartida = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    tituloPartida = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HoraCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    HoraExpiracion = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    posicionTop = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    posicionJungle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    posicionMid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    posicionSupport = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    posicionAdc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FkIdCreador = table.Column<int>(type: "int", nullable: true),
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    JugadorTop = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorJungle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorMid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorSupport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorAdc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkUsuarioCreador = table.Column<int>(type: "int", nullable: true),
                     FkTipoPartida = table.Column<int>(type: "int", nullable: true),
-                    FKIdTorneo = table.Column<int>(type: "int", nullable: true)
+                    FkTorneo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Partida", x => x.IdCardPartida);
+                    table.PrimaryKey("PK_Partida", x => x.IdPartida);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,16 +79,16 @@ namespace SummonerMatch.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegionServidor",
+                name: "Region",
                 columns: table => new
                 {
-                    IdRegionServidor = table.Column<int>(type: "int", nullable: false)
+                    IdRegion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreRegion = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegionServidor", x => x.IdRegionServidor);
+                    table.PrimaryKey("PK_Region", x => x.IdRegion);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,10 +110,8 @@ namespace SummonerMatch.Migrations
                 {
                     IdTorneo = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreTorneo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DescripcionTorneo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CantEquipos = table.Column<int>(type: "int", nullable: true),
-                    FkIdCreador = table.Column<int>(type: "int", nullable: true)
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CantidadEquipos = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,22 +122,22 @@ namespace SummonerMatch.Migrations
                 name: "Usuario",
                 columns: table => new
                 {
-                    idUsuario = table.Column<int>(type: "int", nullable: false)
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    admin = table.Column<bool>(type: "bit", nullable: true),
-                    nombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    userNickname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    correoElectonico = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    fkRegionServidor = table.Column<int>(type: "int", nullable: true),
-                    fkRango = table.Column<int>(type: "int", nullable: true),
-                    fkPosicion = table.Column<int>(type: "int", nullable: true),
-                    fkImagenPerfil = table.Column<int>(type: "int", nullable: true),
-                    fkIdEquipo = table.Column<int>(type: "int", nullable: true)
+                    EsAdministrador = table.Column<bool>(type: "bit", nullable: true),
+                    NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UsuarioLoL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CorreoElectronico = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contrasena = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagenPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FkPosicion = table.Column<int>(type: "int", nullable: true),
+                    FkRango = table.Column<int>(type: "int", nullable: true),
+                    FkRegion = table.Column<int>(type: "int", nullable: true),
+                    FkValoracion = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.idUsuario);
+                    table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,9 +146,8 @@ namespace SummonerMatch.Migrations
                 {
                     IdValoracion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Media = table.Column<float>(type: "real", nullable: true),
-                    NumValoraciones = table.Column<int>(type: "int", nullable: true),
-                    FkUsuario = table.Column<int>(type: "int", nullable: true)
+                    PuntuacionMedia = table.Column<float>(type: "real", nullable: true),
+                    CantidadValoraciones = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -176,9 +161,6 @@ namespace SummonerMatch.Migrations
                 name: "Equipo");
 
             migrationBuilder.DropTable(
-                name: "ImagenPerfil");
-
-            migrationBuilder.DropTable(
                 name: "Partida");
 
             migrationBuilder.DropTable(
@@ -188,7 +170,7 @@ namespace SummonerMatch.Migrations
                 name: "Rango");
 
             migrationBuilder.DropTable(
-                name: "RegionServidor");
+                name: "Region");
 
             migrationBuilder.DropTable(
                 name: "TipoPartida");

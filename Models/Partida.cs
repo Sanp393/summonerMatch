@@ -5,17 +5,17 @@ namespace SummonerMatch
     public class Partida
     {
         [Key]
-        public int IdCardPartida { get; set; }
-        public string? tituloPartida { get; set; }
-        public DateTime? HoraCreacion { get; set; }
-        public DateTime? HoraExpiracion { get; set; }
-        public string? posicionTop { get; set; }
-        public string? posicionJungle { get; set; }
-        public string? posicionMid { get; set; }
-        public string? posicionSupport { get; set; }
-        public string? posicionAdc { get; set; }
-        public int? FkIdCreador { get; set; }
+        public int IdPartida { get; set; }
+        public string? Titulo { get; set; }
+        public DateTime? FechaCreacion { get; set; }
+        public DateTime? FechaExpiracion { get; set; }
+        public string? JugadorTop { get; set; }
+        public string? JugadorJungle { get; set; }
+        public string? JugadorMid { get; set; }
+        public string? JugadorSupport { get; set; }
+        public string? JugadorAdc { get; set; }
+        public int? FkUsuarioCreador { get; set; }
         public int? FkTipoPartida { get; set; }
-        public int? FKIdTorneo { get; set; }
+        public int? FkTorneo { get; set; }
     }
 }

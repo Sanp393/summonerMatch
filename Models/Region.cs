@@ -2,10 +2,10 @@
 
 namespace SummonerMatch
 {
-    public class RegionServidor
+    public class Region
     {
         [Key]
-        public int IdRegionServidor { get; set; }
+        public int IdRegion { get; set; }
         public string? NombreRegion { get; set; }
     }
 }
