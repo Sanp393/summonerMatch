@@ -68,7 +68,7 @@ namespace SummonerMatch
                 FkRegion = region,
                 FkRango = rango,
                 FkPosicion = posicion,
-                ImagenPerfil = "LogoLoL",
+                ImagenPerfil = "~/assets/images/imgProfile/LogoLoL.jpg",
             };
 
             _context.Usuario.Add(nuevoUsuario);
@@ -87,22 +87,44 @@ namespace SummonerMatch
         }
 
         [HttpPost]
-        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion, string imgPerfil)
+        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion)
         {        
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
-
-            usuario.NombreUsuario = nickname;
+            
+            usuario.UsuarioLoL = nickname;
             usuario.FkRango = rango;
             usuario.FkRegion = region;
             usuario.FkPosicion = posicion;
-            usuario.ImagenPerfil = imgPerfil;
+            
+            _context.Update(usuario);
+            _context.SaveChanges();
 
             HttpContext.Session.SetObject("Usuario", usuario);
+
+            return RedirectToAction("Profile", "Account");
+            //return View("Profile");
+        }
+
+        // Controlador
+        [HttpPost]
+        public IActionResult CambiarImagePerfil(string imgPerfil)
+        {
+            var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
+            usuario.ImagenPerfil = imgPerfil;
+
+            _context.Update(usuario);
             _context.SaveChanges();
+            HttpContext.Session.SetObject("Usuario", usuario);
 
             return RedirectToAction("Profile", "Account");
         }
 
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("Usuario");
+
+            return RedirectToAction("LogIn", "Account");
+        }
     }
 
     public static class SessionExtensions
