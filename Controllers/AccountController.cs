@@ -68,7 +68,7 @@ namespace SummonerMatch
                 FkRegion = region,
                 FkRango = rango,
                 FkPosicion = posicion,
-                ImagenPerfil = "LogoLoL",
+                ImagenPerfil = "~/assets/images/imgProfile/LogoLoL.jpg",
             };
 
             _context.Usuario.Add(nuevoUsuario);
@@ -87,7 +87,7 @@ namespace SummonerMatch
         }
 
         [HttpPost]
-        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion, string imgPerfil)
+        public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion)
         {        
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
 
@@ -95,21 +95,24 @@ namespace SummonerMatch
             usuario.FkRango = rango;
             usuario.FkRegion = region;
             usuario.FkPosicion = posicion;
-            usuario.ImagenPerfil = imgPerfil;
+            //usuario.ImagenPerfil = imgPerfil;
 
-            HttpContext.Session.SetObject("Usuario", usuario);
+            //HttpContext.Session.SetObject("Usuario", usuario);
             _context.Update(usuario);
             _context.SaveChanges();
+
+            //return View();
 
             return RedirectToAction("Profile", "Account");
         }
 
+        // Controlador
         [HttpPost]
-        public IActionResult cambiarImagePerfil(string fileName)
+        public IActionResult CambiarImagePerfil(string imgPerfil)
         {
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
 
-            usuario.ImagenPerfil = fileName;
+            usuario.ImagenPerfil = imgPerfil;
 
             _context.Update(usuario);
             _context.SaveChanges();
@@ -117,6 +120,12 @@ namespace SummonerMatch
             return View();
         }
 
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("Usuario");
+
+            return RedirectToAction("LogIn", "Account");
+        }
     }
 
     public static class SessionExtensions
