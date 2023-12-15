@@ -1,5 +1,7 @@
 ﻿@model List<Partida>
 
+@inject ApplicationDbContext _context
+
 @{
     ViewData["Title"] = "Home Page";
     var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
@@ -14,13 +16,14 @@
     </div>
 </div>
 
+@* Si el usuario no ha iniciado sesión *@
 @if (@usuario == null)
 {
     <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una partida</p>
 }
 
 <div class="d-flex flex-wrap justify-content-center">
-    @* Si existen partidas *@
+    @* Si hay partidas *@
     @if (@Model != null)
     {
         @* Recorrer partidas *@
@@ -33,6 +36,8 @@
                     @* Si es torneo *@
                     @if (partida.FkTorneo != null)
                     {
+                    var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
+                    
                     <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
                     <h3>
                         Torneo @partida.FkTorneo
@@ -41,7 +46,7 @@
                         Creada el: @partida.FechaCreacion
                     </p>
                     <p>
-                        Cantidad equipos: 
+                        Cantidad equipos: @torneo.CantidadEquipos
                     </p>
                     }
                     @* Si es partida normal *@
@@ -57,47 +62,47 @@
                     <div>
                         @if (partida.JugadorTop != null)
                         {
-                        <img class="iluminada" src="~/img/top.png" alt="">
+                        <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
                         }
                         else
                         {
-                        <img class="no-iluminada" src="~/img/top.png" alt="">
+                        <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
                         }
 
                         @if (partida.JugadorJungle != null)
                         {
-                        <img class="iluminada" src="~/img/jungle.png" alt="">
+                        <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
                         }
                         else
                         {
-                        <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                        <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
                         }
 
                         @if (partida.JugadorMid != null)
                         {
-                        <img class="iluminada" src="~/img/mid.png" alt="">
+                        <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
                         }
                         else
                         {
-                        <img class="no-iluminada" src="~/img/mid.png" alt="">
+                        <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
                         }
 
                         @if (partida.JugadorSupport != null)
                         {
-                        <img class="iluminada" src="~/img/support.png" alt="">
+                        <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
                         }
                         else
                         {
-                        <img class="no-iluminada" src="~/img/support.png" alt="">
+                        <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
                         }
 
                         @if (partida.JugadorAdc != null)
                         {
-                        <img class="iluminada" src="~/img/adc.png" alt="">
+                        <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
                         }
                         else
                         {
-                        <img class="no-iluminada" src="~/img/adc.png" alt="">
+                        <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
                         }
                     </div>
                     }
@@ -106,12 +111,15 @@
                     </a>
                 </div>
             }
+            @* Si no está llena la partida *@
             else
             {
             <div class="grupo-partida m-4">
                 @* Si es torneo *@
                 @if (partida.FkTorneo != null)
                 {
+                var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
+                
                 <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
                 <h3>
                     Torneo @partida.FkTorneo
@@ -120,7 +128,7 @@
                     Creada el: @partida.FechaCreacion
                 </p>
                 <p>
-                    Cantidad equipos: 
+                    Cantidad equipos: @torneo.CantidadEquipos
                 </p>
                 }
                 @* Si es partida normal *@
@@ -136,53 +144,62 @@
                 <div>
                     @if (partida.JugadorTop != null)
                     {
-                    <img class="iluminada" src="~/img/top.png" alt="">
+                    <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/img/top.png" alt="">
+                    <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
                     }
 
                     @if (partida.JugadorJungle != null)
                     {
-                    <img class="iluminada" src="~/img/jungle.png" alt="">
+                    <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/img/jungle.png" alt="">
+                    <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
                     }
 
                     @if (partida.JugadorMid != null)
                     {
-                    <img class="iluminada" src="~/img/mid.png" alt="">
+                    <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/img/mid.png" alt="">
+                    <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
                     }
 
                     @if (partida.JugadorSupport != null)
                     {
-                    <img class="iluminada" src="~/img/support.png" alt="">
+                    <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/img/support.png" alt="">
+                    <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
                     }
 
                     @if (partida.JugadorAdc != null)
                     {
-                    <img class="iluminada" src="~/img/adc.png" alt="">
+                    <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/img/adc.png" alt="">
+                    <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
                     }
                 </div>
                 }
-                <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
-                    Grupo lleno
-                </a>
+                @if (@usuario != null)
+                {
+                    <a href="@Url.Action("Index", "DetallesPartida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
+                        Unirse
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
+                        Iniciar sesión
+                    </a>
+                }
             </div>
             }
         }
