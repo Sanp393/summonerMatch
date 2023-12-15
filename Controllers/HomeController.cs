@@ -13,6 +13,7 @@ namespace SummonerMatch
 
         public IActionResult Index()
         {
+            ViewData["TiposPartida"] = _context.TipoPartida.ToList();
             List<Partida> partidas = _context.Partida.Take(10).OrderByDescending(partida => partida.IdPartida).ToList();
             return View(partidas);
         }

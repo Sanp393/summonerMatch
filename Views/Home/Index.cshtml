@@ -22,6 +22,40 @@
     <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una partida</p>
 }
 
+@if (@usuario != null)
+{
+    <button type="button" class="btn menuBtnColor" data-bs-toggle="modal" data-bs-target="#imageModal">
+        Crear partida
+    </button>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form asp-action="CrearPartida" asp-controller="Partida" method="post" class="align-middle">
+                    <div class="modal-body container">
+                        <div class="mb-3">
+                            <label for="nombrePartida" class="form-label">Nombre de la partida</label>
+                            <input type="text" class="form-control inputRounded" id="nombrePartida" name="title" required>
+                        </div>
+                        <div>
+                            <select name="tipoPartida" class="form-select inputRounded" aria-label="Default select example">
+                                @foreach (var tipoPartida in ViewData["TiposPartida"] as List<TipoPartida>)
+                                {
+                                    <option value="@tipoPartida.IdTipoPartida">@tipoPartida.NombreTipo</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Crear Partida</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="d-flex flex-wrap justify-content-center">
     @* Si hay partidas *@
     @if (@Model != null)
@@ -36,75 +70,75 @@
                     @* Si es torneo *@
                     @if (partida.FkTorneo != null)
                     {
-                    var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
-                    
-                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                    <h3>
-                        Torneo @partida.FkTorneo
-                    </h3>
-                    <p>
-                        Creada el: @partida.FechaCreacion
-                    </p>
-                    <p>
-                        Cantidad equipos: @torneo.CantidadEquipos
-                    </p>
+                        var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
+
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <h3>
+                            Torneo @partida.FkTorneo
+                        </h3>
+                        <p>
+                            Creada el: @partida.FechaCreacion
+                        </p>
+                        <p>
+                            Cantidad equipos: @torneo.CantidadEquipos
+                        </p>
                     }
                     @* Si es partida normal *@
                     else
                     {
-                    <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                    <h3>
-                        @partida.Titulo
-                    </h3>
-                    <p>
-                        Creada el: @partida.FechaCreacion
-                    </p>
-                    <div>
-                        @if (partida.JugadorTop != null)
-                        {
-                        <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                        }
-                        else
-                        {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                        }
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <h3>
+                            @partida.Titulo
+                        </h3>
+                        <p>
+                            Creada el: @partida.FechaCreacion
+                        </p>
+                        <div>
+                            @if (partida.JugadorTop != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
+                            }
 
-                        @if (partida.JugadorJungle != null)
-                        {
-                        <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                        }
-                        else
-                        {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                        }
+                            @if (partida.JugadorJungle != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
+                            }
 
-                        @if (partida.JugadorMid != null)
-                        {
-                        <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                        }
-                        else
-                        {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                        }
+                            @if (partida.JugadorMid != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
+                            }
 
-                        @if (partida.JugadorSupport != null)
-                        {
-                        <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                        }
-                        else
-                        {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                        }
+                            @if (partida.JugadorSupport != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
+                            }
 
-                        @if (partida.JugadorAdc != null)
-                        {
-                        <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                        }
-                        else
-                        {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                        }
-                    </div>
+                            @if (partida.JugadorAdc != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                            }
+                        </div>
                     }
                     <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
                         Grupo lleno
@@ -114,93 +148,93 @@
             @* Si no está llena la partida *@
             else
             {
-            <div class="grupo-partida m-4">
-                @* Si es torneo *@
-                @if (partida.FkTorneo != null)
-                {
-                var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
-                
-                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                <h3>
-                    Torneo @partida.FkTorneo
-                </h3>
-                <p>
-                    Creada el: @partida.FechaCreacion
-                </p>
-                <p>
-                    Cantidad equipos: @torneo.CantidadEquipos
-                </p>
-                }
-                @* Si es partida normal *@
-                else
-                {
-                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
-                <h3>
-                    @partida.Titulo
-                </h3>
-                <p>
-                    Creada el: @partida.FechaCreacion
-                </p>
-                <div>
-                    @if (partida.JugadorTop != null)
+                <div class="grupo-partida m-4">
+                    @* Si es torneo *@
+                    @if (partida.FkTorneo != null)
                     {
-                    <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                    }
-                    else
-                    {
-                    <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                    }
+                        var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
 
-                    @if (partida.JugadorJungle != null)
-                    {
-                    <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <h3>
+                            Torneo @partida.FkTorneo
+                        </h3>
+                        <p>
+                            Creada el: @partida.FechaCreacion
+                        </p>
+                        <p>
+                            Cantidad equipos: @torneo.CantidadEquipos
+                        </p>
                     }
+                    @* Si es partida normal *@
                     else
                     {
-                    <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                    }
+                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);" alt="">
+                        <h3>
+                            @partida.Titulo
+                        </h3>
+                        <p>
+                            Creada el: @partida.FechaCreacion
+                        </p>
+                        <div>
+                            @if (partida.JugadorTop != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
+                            }
 
-                    @if (partida.JugadorMid != null)
-                    {
-                    <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                    }
-                    else
-                    {
-                    <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                    }
+                            @if (partida.JugadorJungle != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
+                            }
 
-                    @if (partida.JugadorSupport != null)
-                    {
-                    <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                    }
-                    else
-                    {
-                    <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                    }
+                            @if (partida.JugadorMid != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
+                            }
 
-                    @if (partida.JugadorAdc != null)
+                            @if (partida.JugadorSupport != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
+                            }
+
+                            @if (partida.JugadorAdc != null)
+                            {
+                                <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                            }
+                            else
+                            {
+                                <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                            }
+                        </div>
+                    }
+                    @if (@usuario != null)
                     {
-                    <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
+                            Unirse
+                        </a>
                     }
                     else
                     {
-                    <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
+                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
+                            Iniciar sesión
+                        </a>
                     }
                 </div>
-                }
-                @if (@usuario != null)
-                {
-                    <a href="@Url.Action("Index", "Partida", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
-                        Unirse
-                    </a>
-                }
-                else
-                {
-                    <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })" style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
-                        Iniciar sesión
-                    </a>
-                }
-            </div>
             }
         }
     }
