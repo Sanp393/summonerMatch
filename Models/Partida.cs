@@ -16,6 +16,6 @@ namespace SummonerMatch
         public string? JugadorAdc { get; set; }
         public int? FkUsuarioCreador { get; set; }
         public int? FkTipoPartida { get; set; }
-        public string? FkTorneo { get; set; }
+        public int? FkTorneo { get; set; }
     }
 }

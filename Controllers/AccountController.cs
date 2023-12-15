@@ -90,7 +90,7 @@ namespace SummonerMatch
         public IActionResult UpdateProfile(string nickname, int rango, int region, int posicion)
         {        
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
-
+            
             usuario.UsuarioLoL = nickname;
             usuario.FkRango = rango;
             usuario.FkRegion = region;

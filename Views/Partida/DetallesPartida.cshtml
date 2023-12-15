@@ -1,0 +1,96 @@
+@model SummonerMatch.Partida;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="position: relative; margin: 40px auto; width: 75%; height: 400px;" class="d-flex justify-content-center">
+    <img src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" alt="" style="position: absolute; with: 100%; height: 100%; z-index: -1; filter: brightness(75%);">
+    <h1 style="position: absolute; top: 40px; left: 180px; text-shadow: 2px 2px 2px #333; color: white;">
+        @Model.Titulo
+    </h1>
+</div>
+<div style="width: 55%; margin: auto; display: flex; height: 100vh;">
+    @* Izquierda *@
+    <div style="display: flex; flex-direction: column; width: 50%;">
+        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            @Model.JugadorTop
+        </h3>
+
+        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            @Model.JugadorJungle
+        </h3>
+
+        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            @Model.JugadorMid
+        </h3>
+
+        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            @Model.JugadorSupport
+        </h3>
+
+        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+            @Model.JugadorAdc
+        </h3>
+    </div>
+    @* Derecha *@
+    <div style="margin-left: auto; display: flex; flex-direction: column;">
+        @* Top *@
+        <div style="display: flex;">
+            @if (@Model.JugadorTop == null)
+            {
+            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+                Unirse
+            </a>
+            }
+            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/top.png" alt="">
+        </div>
+
+        @* Jungle *@
+        <div style="display: flex;">
+            @if (@Model.JugadorJungle == null)
+            {
+            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+                Unirse
+            </a>
+            }
+            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/jungle.png" alt="">
+        </div>
+
+        @* Mid *@
+        <div style="display: flex;">
+            @if (@Model.JugadorMid == null)
+            {
+            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+                Unirse
+            </a>
+            }
+            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/mid.png" alt="">
+        </div>
+
+        @* Support *@
+        <div style="display: flex;">
+            @if (@Model.JugadorSupport == null)
+            {
+            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+                Unirse
+            </a>
+            }
+            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/support.png" alt="">
+        </div>
+
+        @* Adc *@
+        <div style="display: flex;">
+            @if (@Model.JugadorAdc == null)
+            {
+            <a href="@Url.Action("Login", "Account")" style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
+                Unirse
+            </a>
+            }
+            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/adc.png" alt="">
+        </div>
+    </div>
+</div>
+<div>
+    
+</div>

@@ -13,16 +13,9 @@ namespace SummonerMatch
 
         public IActionResult Index()
         {
-            try
-            {
-                List<Partida> partidas = _context.Partida.Take(10).OrderByDescending(partida => partida.IdPartida).ToList();
-                return View(partidas);
-            }
-            catch (Exception ex)
-            {
-                return View();
-            }
+            ViewData["TiposPartida"] = _context.TipoPartida.ToList();
+            List<Partida> partidas = _context.Partida.Take(10).OrderByDescending(partida => partida.IdPartida).ToList();
+            return View(partidas);
         }
-        
     }
 }
