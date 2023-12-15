@@ -95,15 +95,14 @@ namespace SummonerMatch
             usuario.FkRango = rango;
             usuario.FkRegion = region;
             usuario.FkPosicion = posicion;
-            //usuario.ImagenPerfil = imgPerfil;
-
-            //HttpContext.Session.SetObject("Usuario", usuario);
+            
             _context.Update(usuario);
             _context.SaveChanges();
 
-            //return View();
+            HttpContext.Session.SetObject("Usuario", usuario);
 
             return RedirectToAction("Profile", "Account");
+            //return View("Profile");
         }
 
         // Controlador
@@ -111,13 +110,13 @@ namespace SummonerMatch
         public IActionResult CambiarImagePerfil(string imgPerfil)
         {
             var usuario = HttpContext.Session.GetObject<Usuario>("Usuario");
-
             usuario.ImagenPerfil = imgPerfil;
 
             _context.Update(usuario);
             _context.SaveChanges();
+            HttpContext.Session.SetObject("Usuario", usuario);
 
-            return View();
+            return RedirectToAction("Profile", "Account");
         }
 
         public IActionResult LogOut()

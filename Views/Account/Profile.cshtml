@@ -11,19 +11,18 @@
 </div>
 
 <div class="container-fluid justify-content-center" style="min-height: 100vh;">
-    <form asp-action="UpdateProfile" asp-controller="Account" method="post" class="align-middle">
+    <div>
         <div class="d-flex justify-content-center align-items-center">
             <button class="btn btn-lg border-0 p-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#imageModal">
                 <img id="ProfileImage" class="rounded-circle img-fluid" src="@Url.Content(usuario.ImagenPerfil)" alt="Foto de perfil" />
             </button>
         </div>
-        
+
 
         <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body container">
-
                         <div class="row">
                             <!-- Use buttons instead of images in the modal -->
                             <!-- Vista -->
@@ -120,69 +119,68 @@
                 </div>
             </div>
         </div>
-        <div class="mb-5 container-fluid d-flex justify-content-center align-items-center">
-
-            <div class="mb-3">
-                <label for="nickname" class="form-label">Nickname:</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="nickname" name="nickname" value="@usuario.UsuarioLoL" readonly>
-                    <button type="button" class="btn btn-secondary" id="modifyNicknameBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                        </svg>
-                    </button>
-                </div>
+    </div>
+    <form asp-action="UpdateProfile" asp-controller="Account" method="post" class="align-middle">
+        <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="nickname" name="nickname" value="@usuario.UsuarioLoL" readonly>
+                <button type="button" class="btn btn-secondary" id="modifyNicknameBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                    </svg>
+                </button>
             </div>
-
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
             <div class="mb-3 d-flex justify-content-between">
-                <div class="mb-3 d-flex justify-content-between">
-                    <div>
-                        <select class="form-select inputRounded" aria-label="Default select example" name="rango" id="rangoSelect">
-                            @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="rango" id="rangoSelect">
+                        @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                        {
+                            if (rango.IdRango == usuario.FkRango)
                             {
-                                if (rango.IdRango == usuario.FkRango)
-                                {
-                                    <option value="@rango.IdRango" selected>@rango.NombreRango</option>
-                                }
-                                <option value="@rango.IdRango">@rango.NombreRango</option>
+                                <option value="@rango.IdRango" selected>@rango.NombreRango</option>
                             }
-                        </select>
-                    </div>
-                    <div>
-                        <select class="form-select inputRounded" aria-label="Default select example" name="region" id="regionSelect">
-                            @foreach (var region in ViewData["Regiones"] as List<Region>)
-                            {
-                                if (region.IdRegion == usuario.FkRegion)
-                                {
-                                    <option value="@region.IdRegion" selected>@region.NombreRegion</option>
-                                }
-                                <option value="@region.IdRegion">@region.NombreRegion</option>
-                            }
-                        </select>
-                    </div>
-
-                    <div>
-                        <select class="form-select inputRounded" aria-label="Default select example" name="posicion" id="posicionSelect">
-                            @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
-                            {
-                                if (posicion.IdPosicion == usuario.FkPosicion)
-                                {
-                                    <option value="@posicion.IdPosicion" selected>@posicion.NombrePosicion</option>
-                                }
-
-                                <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
-                            }
-                        </select>
-                    </div>
-
+                            <option value="@rango.IdRango">@rango.NombreRango</option>
+                        }
+                    </select>
                 </div>
-            </div>
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="region" id="regionSelect">
+                        @foreach (var region in ViewData["Regiones"] as List<Region>)
+                        {
+                            if (region.IdRegion == usuario.FkRegion)
+                            {
+                                <option value="@region.IdRegion" selected>@region.NombreRegion</option>
+                            }
+                            <option value="@region.IdRegion">@region.NombreRegion</option>
+                        }
+                    </select>
+                </div>
 
-            <div class="mb-3 d-flex ">
-                <button type="submit" class="btn menuBtnColor w-100">Guardar Cambios</button>
+                <div>
+                    <select class="form-select inputRounded" aria-label="Default select example" name="posicion" id="posicionSelect">
+                        @foreach (var posicion in ViewData["Posiciones"] as List<Posicion>)
+                        {
+                            if (posicion.IdPosicion == usuario.FkPosicion)
+                            {
+                                <option value="@posicion.IdPosicion" selected>@posicion.NombrePosicion</option>
+                            }
+
+                            <option value="@posicion.IdPosicion">@posicion.NombrePosicion</option>
+                        }
+                    </select>
+                </div>
+
             </div>
-            
+        </div>
+
+        <div class="mb-3 d-flex ">
+            <button type="submit" class="btn menuBtnColor w-100">Guardar Cambios</button>
+        </div>
+
     </form>
     <a class="nav-link" asp-controller="Account" asp-action="LogOut">
         <button type="button" class="btn text-light menuBtnDark">Cerrar sesión</button>
