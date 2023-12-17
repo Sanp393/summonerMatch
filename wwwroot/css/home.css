@@ -4,8 +4,6 @@
 .card-partida {
     width: 525px;
     height: 230px;
-    background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg');
-    background-size: cover;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }

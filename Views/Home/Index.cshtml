@@ -64,12 +64,17 @@
     {
         @foreach (var partida in Model)
         {
+            Random random = new Random();
+            int numeroAleatorio = random.Next(1, 6);
+            var imageUrl = @Url.Content($"~/assets/images/imgCards/{numeroAleatorio}.jpg");
+
             <div class="m-4 card-partida position-relative
                 @(partida.JugadorTop != null &&
                   partida.JugadorJungle != null &&
                   partida.JugadorMid != null &&
                   partida.JugadorSupport != null &&
-                  partida.JugadorAdc != null ? "no-disponible" : "disponible")">
+                  partida.JugadorAdc != null ? "no-disponible" : "disponible")"
+                 style="background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('@imageUrl'); background-size: cover;">
 
                 <h2 class="fw-bolder text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">@partida.Titulo</h2>
                 <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-3" src="~/assets/images/rangos/gold.webp" alt="">
