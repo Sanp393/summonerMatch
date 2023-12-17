@@ -64,50 +64,51 @@
     {
         @foreach (var partida in Model)
         {
-            <div class="grupo-partida m-4
+            <div class="m-4 card-partida position-relative
                 @(partida.JugadorTop != null &&
                   partida.JugadorJungle != null &&
                   partida.JugadorMid != null &&
                   partida.JugadorSupport != null &&
-                  partida.JugadorAdc != null ? "partidaLlena" : "partidaDisponible")">
+                  partida.JugadorAdc != null ? "no-disponible" : "disponible")">
 
-                <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
-                     alt="">
+                <h2 class="fw-bolder text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">@partida.Titulo</h2>
+                <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-3" src="~/assets/images/rangos/gold.webp" alt="">
 
-                <h3 class="fw-bolder">@partida.Titulo</h3>
-
-                <div>
-                    <img class="@(partida.JugadorTop != null ? "opacity-50" : "opacity-100")" src="~/assets/images/posiciones/top.png" alt="">
-                    <img class="@(partida.JugadorJungle != null ? "opacity-50" : "opacity-100")" src="~/assets/images/posiciones/jungle.png" alt="">
-                    <img class="@(partida.JugadorMid != null ? "opacity-50" : "opacity-100")" src="~/assets/images/posiciones/mid.png" alt="">
-                    <img class="@(partida.JugadorSupport != null ? "opacity-50" : "opacity-100")" src="~/assets/images/posiciones/support.png" alt="">
-                    <img class="@(partida.JugadorAdc != null ? "opacity-50" : "opacity-100")" src="~/assets/images/posiciones/adc.png" alt="">
+                @* Posiciones *@
+                <div class="d-flex position-absolute bottom-0 start-0 ms-5 mb-4">
+                    <img class="posicion @(partida.JugadorTop != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/top.png" alt="">
+                    <img class="posicion ms-2 @(partida.JugadorJungle != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/jungle.png" alt="">
+                    <img class="posicion ms-2 @(partida.JugadorMid != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/mid.png" alt="">
+                    <img class="posicion ms-2 @(partida.JugadorSupport != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/support.png" alt="">
+                    <img class="posicion ms-2 @(partida.JugadorAdc != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/adc.png" alt="">
                 </div>
 
-                @if(usuario == null)
-                {
-                    <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })"
-                       style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
-                        Iniciar sesión
-                    </a>
-                }
-                else if (partida.JugadorTop != null &&
-                         partida.JugadorJungle != null &&
-                         partida.JugadorMid != null &&
-                         partida.JugadorSupport != null &&
-                         partida.JugadorAdc != null)
-                {
-                    <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
-                        Grupo lleno
-                    </a>
-                }
-                else
-                {
-                    <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })"
-                       style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
-                        Unirse
-                    </a>
-                }
+                @* Botones (Iniciar sesión, Unirse, Lleno) *@
+                <div class="position-absolute bottom-0 end-0 me-5 mb-4 text-center">
+                    <p class="m-0 mb-1 text-secondary-emphasis">Jugadores: 5/4</p>
+                    @if (usuario == null)
+                    {
+                        <a asp-controller="Account" asp-action="Login">
+                            <button type="button" class="btn pt-2 BtnIniciarSesion w-100">Iniciar sesión</button>
+                        </a>
+                    }
+                    else if (partida.JugadorTop != null &&
+                    partida.JugadorJungle != null &&
+                    partida.JugadorMid != null &&
+                    partida.JugadorSupport != null &&
+                    partida.JugadorAdc != null)
+                    {
+                        <button type="button" class="btn pt-2 BtnLleno text-white w-100" disabled>
+                            Grupo lleno
+                        </button>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
+                            <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
+                        </a>
+                    }
+                </div>
             </div>
         }
     }
