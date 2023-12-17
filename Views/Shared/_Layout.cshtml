@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,16 +17,13 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #101014;">
+    <header style="background-color: #101014;">
+        <nav class="navbar navbar-expand-md navbar-dark w-50 m-auto">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/assets/logos/SummonerMatchIcon.svg" class="d-inline-block d-sm-none ps-2" alt="SummonerMatch" height="30" />
                     <img src="~/assets/logos/SummonerMatchText.svg" class="d-none d-sm-inline-block" alt="SummonerMatch" height="20" />
                 </a>
-                @{
-                    var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
-                }
                 @if (@usuario == null)
                 {
                     <a asp-controller="Account" asp-action="Profile">
@@ -57,7 +58,7 @@
                     <div class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile">
                             <img src="@Url.Content(usuario.ImagenPerfil)"
-                                 alt="Imagen de perfil" class="rounded-circle" width="38" />
+                                 alt="Imagen de perfil" class="rounded-circle" width="50" />
                         </a>
                     </div>
                 }
