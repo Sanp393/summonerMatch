@@ -16,258 +16,180 @@
     </div>
 </div>
 
-@* Si el usuario no ha iniciado sesión *@
-@if (@usuario == null)
-{
-    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">Inicia sesión para poder unirte a una
-        partida</p>
-}
+<div class="px-4 py-3 w-75 m-auto mt-3 d-flex justify-content-between" style="background-color: #101014; border-radius: 10px;">
+    @if (@usuario == null)
+    {
+        <button type="button" class="btn menuBtnColor" data-bs-toggle="modal" data-bs-target="#imageModal">
+            Crear partida
+        </button>
 
-@if (@usuario != null)
-{
-    <button type="button" class="btn menuBtnColor" data-bs-toggle="modal" data-bs-target="#imageModal">
-        Crear partida
-    </button>
-
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form asp-action="CrearPartida" asp-controller="Partida" method="post" class="align-middle">
-                    <div class="modal-body container">
-                        <div class="mb-3">
-                            <label for="nombrePartida" class="form-label">Nombre de la partida</label>
-                            <input type="text" class="form-control inputRounded" id="nombrePartida" name="title" required>
-                        </div>
-                        <div>
-                            <select name="tipoPartida" class="form-select inputRounded" aria-label="Default select example">
-                                @foreach (var tipoPartida in ViewData["TiposPartida"] as List<TipoPartida>)
-                                {
-                                    <option value="@tipoPartida.IdTipoPartida">@tipoPartida.NombreTipo</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Crear Partida</button>
-                    </div>
-                </form>
+        <form asp-action="OrdenarPartidas" asp-controller="Home" method="post" class="align-middle d-flex w-75 justify-content-end">
+            <div class="d-flex justify-content-between me-5">
+                <select name="filtroOrden" id="filtroOrden" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Ordenar</option>
+                    <option value="relevancia">Relevancia</option>
+                    <option value="menosJugadores">&#9650; Jugadores &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="masJugadores">&#9660; Jugadores &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="fecha">Fecha</option>
+                </select>
+                <select name="filtroRango" id="filtroRango" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Rango</option>
+                    <option value="iron">Hierro</option>
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Plata</option>
+                    <option value="gold">Oro</option>
+                    <option value="platinum">Platino</option>
+                    <option value="emerald">Esmeralda</option>
+                    <option value="diamond">Diamante</option>
+                    <option value="master">Maestro</option>
+                    <option value="grandMaster">Gran Maestro</option>
+                    <option value="challenger">Challenger</option>
+                </select>
+                <select name="filtroTipoPartida" id="filtroTipoPartida" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="casual">Casual</option>
+                    <option value="ranked">Ranked</option>
+                    <option value="aram">Aram</option>
+                </select>
             </div>
+
+            <button type="submit" class="btn menuBtnColor" id="filtrosSelectBtn">Reestablecer</button>
+        </form>
+    }
+    else
+    {
+        <h5 class="text-center m-auto">
+            Inicia sesión para poder unirte a una
+            partida
+        </h5>
+    }
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white">
+            <form asp-action="CrearPartida" asp-controller="Partida" method="post" class="align-middle">
+                <div class="modal-body container" style="background-color: #19191b;">
+                    <div class="mb-3">
+                        <label for="nombrePartida" class="form-label">Nombre de la partida</label>
+                        <input type="text" class="form-control inputRounded" id="nombrePartida" name="title" required>
+                    </div>
+                    <div class="d-flex">
+                        <select name="tipoPartida" class="form-select inputRounded w-50 me-1">
+                            @foreach (var tipoPartida in ViewData["TiposPartida"] as List<TipoPartida>)
+                            {
+                                <option value="@tipoPartida.IdTipoPartida">@tipoPartida.NombreTipo</option>
+                            }
+                        </select>
+                        <select name="rango" class="form-select inputRounded w-50 ms-1">
+                            @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                            {
+                                <option value="@rango.IdRango">@rango.NombreRango</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #101014">
+                    <button type="button" class="btn menuBtnDark text-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn menuBtnColor">Crear Partida</button>
+                </div>
+            </form>
         </div>
     </div>
-}
+</div>
 
 <div class="d-flex flex-wrap justify-content-center">
     @* Si hay partidas *@
     @if (@Model != null)
     {
-        @* Recorrer partidas *@
         @foreach (var partida in Model)
         {
-            @* Si la partida está llena *@
-            @if (partida.JugadorTop != null && partida.JugadorJungle != null && partida.JugadorMid != null &&
-           partida.JugadorSupport != null && partida.JugadorAdc != null)
+            Random random = new Random();
+            int numeroAleatorio = random.Next(1, 6);
+            var imageUrl = @Url.Content($"~/assets/images/imgCards/{numeroAleatorio}.jpg");
+            var usuarioCreador = _context.Usuario.SingleOrDefault(u => u.IdUsuario == partida.FkUsuarioCreador);
+            var servidorPartida = _context.Region.SingleOrDefault(r => r.IdRegion == usuarioCreador.FkRegion);
+            var rangoPartida = _context.Rango.SingleOrDefault(r => r.IdRango == partida.FkRango);
+            var tipoPartida = _context.TipoPartida.SingleOrDefault(t => t.IdTipoPartida == partida.FkTipoPartida);
+
+            DateTime fechaActual = DateTime.Now;
+
+            if (partida.FechaExpiracion > fechaActual)
             {
-                <div class="grupo-partida m-4" style="border: 2px solid red">
-                    @* Si es torneo *@
-                    @if (partida.FkTorneo != null)
+                <div class="m-4 card-partida position-relative
+                @(partida.JugadorTop != null &&
+                  partida.JugadorJungle != null &&
+                  partida.JugadorMid != null &&
+                  partida.JugadorSupport != null &&
+                  partida.JugadorAdc != null ? "no-disponible" : "disponible")"
+                     style="background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('@imageUrl'); background-size: cover;">
+
+                    <div class="text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">
+                        <h2 class="fw-bolder">@partida.Titulo</h2>
+                        @if (servidorPartida != null)
+                        {
+                            <p class="opacity-75 m-0" style="font-size: 13px;">Servidor: @servidorPartida.NombreRegion</p>
+                        }
+                        @if (tipoPartida != null)
+                        {
+                            <p class="opacity-75 m-0" style="font-size: 13px;">Tipo de partida: @tipoPartida.NombreTipo</p>
+                        }
+                    </div>
+                    @if (rangoPartida != null)
                     {
-                        var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
-
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
-                            alt="">
-                        <h3>
-                            Torneo @partida.FkTorneo
-                        </h3>
-                        <p>
-                            Creada el: @partida.FechaCreacion
-                        </p>
-                        <p>
-                            Cantidad equipos: @torneo.CantidadEquipos
-                        </p>
-                    }
-                    @* Si es partida normal *@
-                    else
-                    {
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
-                            alt="">
-                        <h3>
-                            @partida.Titulo
-                        </h3>
-                        <p>
-                            Creada el: @partida.FechaCreacion
-                        </p>
-                        <div>
-                            @if (partida.JugadorTop != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                            }
-
-                            @if (partida.JugadorJungle != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                            }
-
-                            @if (partida.JugadorMid != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                            }
-
-                            @if (partida.JugadorSupport != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                            }
-
-                            @if (partida.JugadorAdc != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                            }
-                        </div>
-                    }
-                    <a style="padding: 16px!important; line-height: 1!important; background-color: #933" class="w-auto">
-                        Grupo lleno
-                    </a>
-                </div>
-            }
-            @* Si no está llena la partida *@
-            else
-            {
-                <div class="grupo-partida m-4">
-                    @* Si es torneo *@
-                    @if (partida.FkTorneo != null)
-                    {
-                        var torneo = _context.Torneo.FirstOrDefault(t => t.IdTorneo == partida.FkTorneo);
-
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
-                            alt="">
-                        <h3>
-                            Torneo @partida.FkTorneo
-                        </h3>
-                        <p>
-                            Creada el: @partida.FechaCreacion
-                        </p>
-                        <p>
-                            Cantidad equipos: @torneo.CantidadEquipos
-                        </p>
-                    }
-                    @* Si es partida normal *@
-                    else
-                    {
-                        <img class="fondo" src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" style="filter: brightness(0.5);"
-                            alt="">
-                        <h3>
-                            @partida.Titulo
-                        </h3>
-                        <p>
-                            Creada el: @partida.FechaCreacion
-                        </p>
-                        <div>
-                            @if (partida.JugadorTop != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/top.png" alt="">
-                            }
-
-                            @if (partida.JugadorJungle != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/jungle.png" alt="">
-                            }
-
-                            @if (partida.JugadorMid != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/mid.png" alt="">
-                            }
-
-                            @if (partida.JugadorSupport != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/support.png" alt="">
-                            }
-
-                            @if (partida.JugadorAdc != null)
-                            {
-                                <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                            }
-                            else
-                            {
-                                <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                            }
-                        </div>
-                    }
-                    @if (@usuario != null)
-                    {
-                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })"
-                            style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
-                            Unirse
-                        </a>
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/@(rangoPartida.NombreRango).webp" alt="">
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })"
-                            style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
-                            Iniciar sesión
-                        </a>
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/unranked.webp" alt="">
                     }
-                    @if (partida.JugadorAdc != null)
-                    {
-                        <img class="iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                    }
-                    else
-                    {
-                        <img class="no-iluminada" src="~/assets/images/posiciones/adc.png" alt="">
-                    }
-                    }
-                    @if (@usuario != null)
-                    {
-                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })"
-                            style="padding: 16px!important; line-height: 1!important; background-color: #494" class="w-auto">
-                            Unirse
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Login", "Account", new { Id = @partida.IdPartida })"
-                            style="padding: 16px!important; line-height: 1!important; background-color: #bb5" class="w-auto">
-                            Iniciar sesión
-                        </a>
-                    }
+
+                    @* Posiciones *@
+                    <div class="d-flex position-absolute bottom-0 start-0 ms-5 mb-4">
+                        <img class="posicion @(partida.JugadorTop != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/top.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorJungle != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/jungle.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorMid != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/mid.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorSupport != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/support.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorAdc != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/adc.png" alt="">
+                    </div>
+
+                    @* Botones (Iniciar sesión, Unirse, Lleno) *@
+                    <div class="position-absolute bottom-0 end-0 me-5 mb-4 text-center">
+                        <p class="m-0 mb-1 text-secondary-emphasis">Jugadores: @partida.NumJugadores/5</p>
+                        @if (usuario == null)
+                        {
+                            <a asp-controller="Account" asp-action="Login">
+                                <button type="button" class="btn pt-2 BtnIniciarSesion w-100">Iniciar sesión</button>
+                            </a>
+                        }
+                        else if (partida.JugadorTop != null &&
+                        partida.JugadorJungle != null &&
+                        partida.JugadorMid != null &&
+                        partida.JugadorSupport != null &&
+                        partida.JugadorAdc != null)
+                        {
+                            <button type="button" class="btn pt-2 BtnLleno text-white w-100" style="cursor: default;">
+                                Grupo lleno
+                            </button>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
+                                <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
+                            </a>
+                        }
+                    </div>
                 </div>
             }
         }
     }
 </div>
-<div style="height: 3000px;"></div>
+
+<div style="height: 2000px;"></div>
+
+<script>
+    $(".filtrosSelect").change(function () {
+        $(this).find("option[value='']").remove()
+        $("#filtrosSelectBtn").html("Aplicar cambios");
+    });
+</script>
