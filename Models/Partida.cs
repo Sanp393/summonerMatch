@@ -17,5 +17,7 @@ namespace SummonerMatch
         public int? FkUsuarioCreador { get; set; }
         public int? FkTipoPartida { get; set; }
         public int? FkTorneo { get; set; }
+        public int? FkRango { get; set; }
+        public int NumJugadores { get; set; }
     }
 }

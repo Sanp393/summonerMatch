@@ -16,48 +16,88 @@
     </div>
 </div>
 
-@* Si el usuario no ha iniciado sesión *@
-@if (@usuario == null)
-{
-    <p style="font-size: 40px; color:white; text-align: center; margin-top: 40px;">
-        Inicia sesión para poder unirte a una
-        partida
-    </p>
-}
+<div class="px-4 py-3 w-75 m-auto mt-3 d-flex justify-content-between" style="background-color: #101014; border-radius: 10px;">
+    @if (@usuario == null)
+    {
+        <button type="button" class="btn menuBtnColor" data-bs-toggle="modal" data-bs-target="#imageModal">
+            Crear partida
+        </button>
 
-@if (@usuario != null)
-{
-    <button type="button" class="btn menuBtnColor" data-bs-toggle="modal" data-bs-target="#imageModal">
-        Crear partida
-    </button>
-
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form asp-action="CrearPartida" asp-controller="Partida" method="post" class="align-middle">
-                    <div class="modal-body container">
-                        <div class="mb-3">
-                            <label for="nombrePartida" class="form-label">Nombre de la partida</label>
-                            <input type="text" class="form-control inputRounded" id="nombrePartida" name="title" required>
-                        </div>
-                        <div>
-                            <select name="tipoPartida" class="form-select inputRounded" aria-label="Default select example">
-                                @foreach (var tipoPartida in ViewData["TiposPartida"] as List<TipoPartida>)
-                                {
-                                    <option value="@tipoPartida.IdTipoPartida">@tipoPartida.NombreTipo</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Crear Partida</button>
-                    </div>
-                </form>
+        <form asp-action="OrdenarPartidas" asp-controller="Home" method="post" class="align-middle d-flex w-75 justify-content-end">
+            <div class="d-flex justify-content-between me-5">
+                <select name="filtroOrden" id="filtroOrden" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Ordenar</option>
+                    <option value="relevancia">Relevancia</option>
+                    <option value="menosJugadores">&#9650; Jugadores &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="masJugadores">&#9660; Jugadores &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="fecha">Fecha</option>
+                </select>
+                <select name="filtroRango" id="filtroRango" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Rango</option>
+                    <option value="iron">Hierro</option>
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Plata</option>
+                    <option value="gold">Oro</option>
+                    <option value="platinum">Platino</option>
+                    <option value="emerald">Esmeralda</option>
+                    <option value="diamond">Diamante</option>
+                    <option value="master">Maestro</option>
+                    <option value="grandMaster">Gran Maestro</option>
+                    <option value="challenger">Challenger</option>
+                </select>
+                <select name="filtroTipoPartida" id="filtroTipoPartida" class="form-select inputRounded ms-1 filtrosSelect">
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="casual">Casual</option>
+                    <option value="ranked">Ranked</option>
+                    <option value="aram">Aram</option>
+                </select>
             </div>
+
+            <button type="submit" class="btn menuBtnColor" id="filtrosSelectBtn">Reestablecer</button>
+        </form>
+    }
+    else
+    {
+        <h5 class="text-center m-auto">
+            Inicia sesión para poder unirte a una
+            partida
+        </h5>
+    }
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white">
+            <form asp-action="CrearPartida" asp-controller="Partida" method="post" class="align-middle">
+                <div class="modal-body container" style="background-color: #19191b;">
+                    <div class="mb-3">
+                        <label for="nombrePartida" class="form-label">Nombre de la partida</label>
+                        <input type="text" class="form-control inputRounded" id="nombrePartida" name="title" required>
+                    </div>
+                    <div class="d-flex">
+                        <select name="tipoPartida" class="form-select inputRounded w-50 me-1">
+                            @foreach (var tipoPartida in ViewData["TiposPartida"] as List<TipoPartida>)
+                            {
+                                <option value="@tipoPartida.IdTipoPartida">@tipoPartida.NombreTipo</option>
+                            }
+                        </select>
+                        <select name="rango" class="form-select inputRounded w-50 ms-1">
+                            @foreach (var rango in ViewData["Rangos"] as List<Rango>)
+                            {
+                                <option value="@rango.IdRango">@rango.NombreRango</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #101014">
+                    <button type="button" class="btn menuBtnDark text-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn menuBtnColor">Crear Partida</button>
+                </div>
+            </form>
         </div>
     </div>
-}
+</div>
+
 <div class="d-flex flex-wrap justify-content-center">
     @* Si hay partidas *@
     @if (@Model != null)
@@ -67,55 +107,89 @@
             Random random = new Random();
             int numeroAleatorio = random.Next(1, 6);
             var imageUrl = @Url.Content($"~/assets/images/imgCards/{numeroAleatorio}.jpg");
+            var usuarioCreador = _context.Usuario.SingleOrDefault(u => u.IdUsuario == partida.FkUsuarioCreador);
+            var servidorPartida = _context.Region.SingleOrDefault(r => r.IdRegion == usuarioCreador.FkRegion);
+            var rangoPartida = _context.Rango.SingleOrDefault(r => r.IdRango == partida.FkRango);
+            var tipoPartida = _context.TipoPartida.SingleOrDefault(t => t.IdTipoPartida == partida.FkTipoPartida);
 
-            <div class="m-4 card-partida position-relative
+            DateTime fechaActual = DateTime.Now;
+
+            if (partida.FechaExpiracion > fechaActual)
+            {
+                <div class="m-4 card-partida position-relative
                 @(partida.JugadorTop != null &&
                   partida.JugadorJungle != null &&
                   partida.JugadorMid != null &&
                   partida.JugadorSupport != null &&
                   partida.JugadorAdc != null ? "no-disponible" : "disponible")"
-                 style="background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('@imageUrl'); background-size: cover;">
+                     style="background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('@imageUrl'); background-size: cover;">
 
-                <h2 class="fw-bolder text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">@partida.Titulo</h2>
-                <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-3" src="~/assets/images/rangos/gold.webp" alt="">
-
-                @* Posiciones *@
-                <div class="d-flex position-absolute bottom-0 start-0 ms-5 mb-4">
-                    <img class="posicion @(partida.JugadorTop != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/top.png" alt="">
-                    <img class="posicion ms-2 @(partida.JugadorJungle != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/jungle.png" alt="">
-                    <img class="posicion ms-2 @(partida.JugadorMid != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/mid.png" alt="">
-                    <img class="posicion ms-2 @(partida.JugadorSupport != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/support.png" alt="">
-                    <img class="posicion ms-2 @(partida.JugadorAdc != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/adc.png" alt="">
-                </div>
-
-                @* Botones (Iniciar sesión, Unirse, Lleno) *@
-                <div class="position-absolute bottom-0 end-0 me-5 mb-4 text-center">
-                    <p class="m-0 mb-1 text-secondary-emphasis">Jugadores: 5/4</p>
-                    @if (usuario == null)
+                    <div class="text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">
+                        <h2 class="fw-bolder">@partida.Titulo</h2>
+                        @if (servidorPartida != null)
+                        {
+                            <p class="opacity-75 m-0" style="font-size: 13px;">Servidor: @servidorPartida.NombreRegion</p>
+                        }
+                        @if (tipoPartida != null)
+                        {
+                            <p class="opacity-75 m-0" style="font-size: 13px;">Tipo de partida: @tipoPartida.NombreTipo</p>
+                        }
+                    </div>
+                    @if (rangoPartida != null)
                     {
-                        <a asp-controller="Account" asp-action="Login">
-                            <button type="button" class="btn pt-2 BtnIniciarSesion w-100">Iniciar sesión</button>
-                        </a>
-                    }
-                    else if (partida.JugadorTop != null &&
-                    partida.JugadorJungle != null &&
-                    partida.JugadorMid != null &&
-                    partida.JugadorSupport != null &&
-                    partida.JugadorAdc != null)
-                    {
-                        <button type="button" class="btn pt-2 BtnLleno text-white w-100" disabled>
-                            Grupo lleno
-                        </button>
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/@(rangoPartida.NombreRango).webp" alt="">
                     }
                     else
                     {
-                        <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
-                            <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
-                        </a>
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/unranked.webp" alt="">
                     }
+
+                    @* Posiciones *@
+                    <div class="d-flex position-absolute bottom-0 start-0 ms-5 mb-4">
+                        <img class="posicion @(partida.JugadorTop != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/top.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorJungle != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/jungle.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorMid != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/mid.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorSupport != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/support.png" alt="">
+                        <img class="posicion ms-2 @(partida.JugadorAdc != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/adc.png" alt="">
+                    </div>
+
+                    @* Botones (Iniciar sesión, Unirse, Lleno) *@
+                    <div class="position-absolute bottom-0 end-0 me-5 mb-4 text-center">
+                        <p class="m-0 mb-1 text-secondary-emphasis">Jugadores: @partida.NumJugadores/5</p>
+                        @if (usuario == null)
+                        {
+                            <a asp-controller="Account" asp-action="Login">
+                                <button type="button" class="btn pt-2 BtnIniciarSesion w-100">Iniciar sesión</button>
+                            </a>
+                        }
+                        else if (partida.JugadorTop != null &&
+                        partida.JugadorJungle != null &&
+                        partida.JugadorMid != null &&
+                        partida.JugadorSupport != null &&
+                        partida.JugadorAdc != null)
+                        {
+                            <button type="button" class="btn pt-2 BtnLleno text-white w-100" style="cursor: default;">
+                                Grupo lleno
+                            </button>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
+                                <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
+                            </a>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         }
     }
 </div>
-<div style="height: 3000px;"></div>
+
+<div style="height: 2000px;"></div>
+
+<script>
+    $(".filtrosSelect").change(function () {
+        $(this).find("option[value='']").remove()
+        $("#filtrosSelectBtn").html("Aplicar cambios");
+    });
+</script>
