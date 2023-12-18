@@ -124,7 +124,7 @@
                   partida.JugadorAdc != null ? "no-disponible" : "disponible")"
                      style="background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('@imageUrl'); background-size: cover;">
 
-                    <div class="text-white text-capitalize position-absolute top-0 start-0 m-0 ms-5 mt-4" style="text-shadow: 0px 0px 16px black;">
+                    <div class="text-white text-capitalize position-absolute top-0 start-0 m-0 ms-4 mt-4" style="text-shadow: 0px 0px 16px black;">
                         <h2 class="fw-bolder">@partida.Titulo</h2>
                         @if (servidorPartida != null)
                         {
@@ -137,15 +137,15 @@
                     </div>
                     @if (rangoPartida != null)
                     {
-                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/@(rangoPartida.NombreRango).webp" alt="">
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-4 mt-2" src="~/assets/images/rangos/@(rangoPartida.NombreRango).webp" alt="">
                     }
                     else
                     {
-                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-5 mt-2" src="~/assets/images/rangos/unranked.webp" alt="">
+                        <img style="width: 6rem;" class="position-absolute top-0 end-0 me-4 mt-2" src="~/assets/images/rangos/unranked.webp" alt="">
                     }
 
                     @* Posiciones *@
-                    <div class="d-flex position-absolute bottom-0 start-0 ms-5 mb-4">
+                    <div class="d-flex position-absolute bottom-0 start-0 ms-4 mb-4">
                         <img class="posicion @(partida.JugadorTop != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/top.png" alt="">
                         <img class="posicion ms-2 @(partida.JugadorJungle != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/jungle.png" alt="">
                         <img class="posicion ms-2 @(partida.JugadorMid != null ? "opacity-75 posicion-off" : "opacity-100 posicion-on")" src="~/assets/images/posiciones/mid.png" alt="">
@@ -154,8 +154,8 @@
                     </div>
 
                     @* Botones (Iniciar sesión, Unirse, Lleno) *@
-                    <div class="position-absolute bottom-0 end-0 me-5 mb-4 text-center">
-                        <p class="m-0 mb-1 text-secondary-emphasis">Jugadores: @partida.NumJugadores/5</p>
+                    <div class="position-absolute bottom-0 end-0 me-4 mb-4 text-center">
+                        <p class="m-0 mb-1 text-secondary-emphasis" style="font-size: 15px;">Jugadores: @partida.NumJugadores/5</p>
                         @if (usuario == null)
                         {
                             <a asp-controller="Account" asp-action="Login">
