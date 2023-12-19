@@ -113,7 +113,15 @@
     </div>
 </div>
 
-<h3 class="mx-5 mt-5 fw-bold">Mis partidas</h3>
+@if (Model.Count > 0)
+{
+    <h3 class="mx-5 mt-5 fw-bold">Mis partidas</h3>
+}
+else
+{
+    <h3 class="mx-5 mt-5 fw-bold text-center mb-5">No tienes partidas actulamente</h3>
+}
+
 <div class="d-flex flex-wrap justify-content-center mb-5">
     @if (Model != null)
     {
