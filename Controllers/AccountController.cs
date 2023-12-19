@@ -84,7 +84,7 @@ namespace SummonerMatch
             ViewData["Rangos"] = _context.Rango.ToList();
             ViewData["Regiones"] = _context.Region.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
-            List<Partida> partidas = _context.Partida.Where(p => p.FkUsuarioCreador == UsuarioLol.IdUsuario).ToList();
+            List<Partida> partidas = _context.Partida.Where(p => p.FkUsuarioCreador == UsuarioLol.IdUsuario).OrderByDescending(p => p.FechaCreacion).ToList();
             return View(partidas);
         }
 
