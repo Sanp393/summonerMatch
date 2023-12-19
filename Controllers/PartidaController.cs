@@ -47,7 +47,7 @@ namespace SummonerMatch
         }
 
         [HttpPost]
-        public IActionResult CrearPartida(string title, int tipoPartida)
+        public IActionResult CrearPartida(string title, int tipoPartida, int rango)
         {
             var partidaExistente = _context.Partida.FirstOrDefault(p => p.Titulo == title);
             if (partidaExistente != null)
@@ -64,6 +64,7 @@ namespace SummonerMatch
                 FechaExpiracion = DateTime.Now.AddMinutes(20),
                 FkTipoPartida = tipoPartida,
                 FkUsuarioCreador = usuario.IdUsuario,
+                FkRango = rango
             };
 
             _context.Partida.Add(nuevaPartida);

@@ -1,71 +1,69 @@
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
+/*------------------------------------------------*/
+/* CARD ------------------------------------------*/
+/*------------------------------------------------*/
+.card-partida {
+    width: 525px;
+    height: 230px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
-.grupo-partida {
-  width: 400px;
-  height: 275px;
-  position: relative;
-  margin: 24px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 2px solid #fff;
+.tarjeta-contenido {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-.grupo-partida .fondo {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+.disponible {
+    box-shadow: inset 0px 0 6px rgba(44, 74, 36, 0.8), inset 0px 0 20px rgba(44, 74, 36, 0.7);
 }
 
-.grupo-partida h3 {
-  font-size: 24px;
-  color: #fff;
-  margin: 24px;
+.no-disponible {
+    box-shadow: inset 0px 0 6px rgba(215, 11, 11, 0.8), inset 0px 0 20px rgba(215, 11, 11, 0.7);
 }
 
-.grupo-partida p {
-  font-size: 20px;
-  color: #fff;
-  margin: 24px;
+/* Iconos posiciones (Top, Mid, Jungle, Adc, Support) */
+.posicion {
+    width: 1.8rem;
 }
 
-.grupo-partida div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 24px;
+.posicion-on {
+    filter: drop-shadow(0px 0px 12px rgba(255, 215, 0, 0.5));
 }
 
-.grupo-partida div img {
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
+.posicion-off {
+    filter: grayscale(75%);
 }
 
-.iluminada {
-  filter: brightness(1.25);
+/* Botónes */
+.BtnIniciarSesion {
+    background-color: #26bbff;
+    border-color: #26bbff;
+    border-radius: 10px;
 }
 
-.no-iluminada {
-  filter: brightness(0.5);
+.BtnUnirse {
+    background-color: #1BD70B;
+    border-color: #1BD70B;
+    border-radius: 10px;
+    filter: drop-shadow(0px 0px 12px rgba(44, 74, 36, 1));
 }
 
-.grupo-partida a {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  display: inline-block;
-  padding: 10px 24px;
-  background-color: #52b752;
-  width: 25%;
-  font-size: 18px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
+.BtnLleno {
+    background-color: #D70B0B;
+    border-color: #D70B0B;
+    border-radius: 10px;
+    filter: drop-shadow(0px 0px 12px rgba(215, 11, 11, 1));
 }
+
+.filtrosSelect, .filtrosSelect option {
+    color: white;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+    .filtrosSelect option {
+        color: white;
+        background-color: rgba(12, 13, 14, 1) !important;
+        margin: 10px 0px;
+    }
