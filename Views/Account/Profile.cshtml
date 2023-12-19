@@ -159,7 +159,7 @@
                 </div>
                 <div class="position-absolute bottom-0 end-0 me-4 mb-4 text-center">
                     <p class="m-0 mb-1 text-secondary-emphasis" style="font-size: 15px;">Jugadores: @partida.NumJugadores/5</p>
-                    <form asp-action="EliminarPartida" asp-controller="Partida" method="post">
+                    <form asp-action="EliminarPartidaPerfil" asp-controller="Partida" method="post">
                         <input type="hidden" name="idPartida" value="@partida.IdPartida" />
                         <button type="submit" class="btn pt-2 BtnLleno text-white w-100" style="cursor: default;">
                             Eliminar Partida

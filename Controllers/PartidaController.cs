@@ -107,5 +107,14 @@ namespace SummonerMatch
 
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult EliminarPartidaPerfil(int idPartida)
+        {
+            var partidaEliminada = _context.Partida.FirstOrDefault(partida => partida.IdPartida == idPartida);
+            _context.Partida.Remove(partidaEliminada);
+            _context.SaveChanges();
+
+            return RedirectToAction("Profile", "Account");
+        }
     }
 }
