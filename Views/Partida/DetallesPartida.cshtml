@@ -40,13 +40,12 @@
         imIn = usuario.UsuarioLoL.Equals(Model.JugadorTop) || usuario.UsuarioLoL.Equals(Model.JugadorJungle) || usuario.UsuarioLoL.Equals(Model.JugadorMid) || usuario.UsuarioLoL.Equals(Model.JugadorSupport) || usuario.UsuarioLoL.Equals(Model.JugadorAdc);
 
     }
-    <!--añadir un bototon que dependendiendo de si soy el creador pueda o bien eliminar la partida o siendo usuario salir de la partida-->
+    <!--aï¿½adir un bototon que dependendiendo de si soy el creador pueda o bien eliminar la partida o siendo usuario salir de la partida-->
     <div style="margin-left: auto; display: flex; flex-direction: column;">
         @* Top *@
         <div style="display: flex;">
             @if (@Model.JugadorTop == null && !imIn)
             {
-
                 <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "top", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
                     Unirse
                 </a>

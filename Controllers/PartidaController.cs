@@ -58,7 +58,7 @@ namespace SummonerMatch
             var partidaExistente = _context.Partida.FirstOrDefault(p => p.Titulo == title);
             if (partidaExistente != null)
             {
-                ModelState.AddModelError(string.Empty, "Ya existe una partida con este título");
+                ModelState.AddModelError(string.Empty, "Ya existe una partida con este tï¿½tulo");
                 return RedirectToAction("Index", "Home");
             }
 
