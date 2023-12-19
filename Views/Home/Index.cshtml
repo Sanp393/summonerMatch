@@ -172,7 +172,16 @@
                                 Grupo lleno
                             </button>
                         }
-                        else
+                        else if (partida.JugadorTop == usuario.UsuarioLoL ||
+                        partida.JugadorJungle == usuario.UsuarioLoL ||
+                        partida.JugadorMid == usuario.UsuarioLoL ||
+                        partida.JugadorSupport == usuario.UsuarioLoL ||
+                        partida.JugadorAdc == usuario.UsuarioLoL)
+                        {
+                            <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
+                                <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Ver Partida</button>
+                            </a>
+                        }else
                         {
                             <a href="@Url.Action("DetallesPartida", "Partida", new { Id = @partida.IdPartida })">
                                 <button type="button" class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
