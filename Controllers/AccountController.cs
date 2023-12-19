@@ -80,10 +80,12 @@ namespace SummonerMatch
         [HttpGet]
         public IActionResult Profile()
         {
+            var UsuarioLol = HttpContext.Session.GetObject<Usuario>("Usuario");
             ViewData["Rangos"] = _context.Rango.ToList();
             ViewData["Regiones"] = _context.Region.ToList();
             ViewData["Posiciones"] = _context.Posicion.ToList();
-            return View();
+            List<Partida> partidas = _context.Partida.Where(p => p.FkUsuarioCreador == UsuarioLol.IdUsuario).ToList();
+            return View(partidas);
         }
 
         [HttpPost]

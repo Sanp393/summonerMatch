@@ -1,5 +1,14 @@
-﻿.nicknameInput
-{
+﻿.nicknameInput {
+    color: #F0E6D2;
+    background-color: rgba(16,16,20, 0.7) !important;
+    border: 1px solid rgb(16,16,20);
+}
+
+    .nicknameInput:focus {
+        color: #F0E6D2;
+    }
+
+.btnEditNickname {
     background-color: transparent !important;
-    border: none;
+    border: none
 }
