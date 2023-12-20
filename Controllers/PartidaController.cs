@@ -67,7 +67,8 @@ namespace SummonerMatch
             {
                 Titulo = title,
                 FechaCreacion = DateTime.Now,
-                FechaExpiracion = DateTime.Now.AddMinutes(20),
+                FechaExpiracion = DateTime.Now.AddDays(7),
+                // FechaExpiracion = DateTime.Now.AddMinutes(20),
                 FkTipoPartida = tipoPartida,
                 FkUsuarioCreador = usuario.IdUsuario,
                 FkRango = rango

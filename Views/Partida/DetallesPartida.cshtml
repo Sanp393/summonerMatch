@@ -3,123 +3,139 @@
 @{
     ViewData["Title"] = "Home Page";
     var usuario = ViewContext.HttpContext.Session.GetObject<Usuario>("Usuario");
+    bool imIn = false;
+    imIn = usuario.UsuarioLoL.Equals(Model.JugadorTop) || usuario.UsuarioLoL.Equals(Model.JugadorJungle) || usuario.UsuarioLoL.Equals(Model.JugadorMid) || usuario.UsuarioLoL.Equals(Model.JugadorSupport) || usuario.UsuarioLoL.Equals(Model.JugadorAdc);
+
 }
 
-<div style="position: relative; margin: 40px auto; width: 75%; height: 400px;" class="d-flex justify-content-center">
-    <img src="https://i.ytimg.com/vi/KpxjwIaW0EM/maxresdefault.jpg" alt="" style="position: absolute; with: 100%; height: 100%; z-index: -1; filter: brightness(75%);">
-    <h1 style="position: absolute; top: 40px; left: 180px; text-shadow: 2px 2px 2px #333; color: white;">
+
+<div class="p-5 w-75 m-auto mt-4 d-flex justify-content-between" style="border-radius: 20px; background: linear-gradient(to left, rgba(6, 6, 6, 1) 30%, rgba(6, 6, 6, 0)), url('/assets/Images/DetailWallpaper.jpg'); background-size: cover; background-position: center 35%;">
+    <h1 class="fw-bolder" style="color: #F0E6D2;">
         @Model.Titulo
     </h1>
-</div>
-<div style="width: 55%; margin: auto; display: flex; height: 100vh;">
-    @* Izquierda *@
-    <div style="display: flex; flex-direction: column; width: 50%;">
-        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-            @Model.JugadorTop
-        </h3>
 
-        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-            @Model.JugadorJungle
-        </h3>
+    <div style="margin-right: 150px;">
+        <div class="d-flex justify-content-between w-25 m-auto my-2">
+            <h5 class="text-center m-0 d-flex align-items-center justify-content-center me-5" style="border: 1px solid rgba(240, 230 ,210, 0.3); min-width: 100px; width: fit-content; height: 40px; background-color: #101014; border-radius: 10px; padding: 16px;">
+                @Model.JugadorTop
+            </h5>
 
-        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-            @Model.JugadorMid
-        </h3>
+            <div class="d-flex align-items-center ms-5 me-2">
+                <p style="color: #F0E6D2; width: 7ch;" class="m-0">
+                    Top
+                </p>
+                <img class="ms-auto" width="40" src="~/assets/images/posiciones/top.png" alt="">
+            </div>
 
-        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-            @Model.JugadorSupport
-        </h3>
-
-        <h3 style="font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #595959; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-            @Model.JugadorAdc
-        </h3>
-    </div>
-    @* Derecha *@
-    @{
-        bool imIn = false;
-        imIn = usuario.UsuarioLoL.Equals(Model.JugadorTop) || usuario.UsuarioLoL.Equals(Model.JugadorJungle) || usuario.UsuarioLoL.Equals(Model.JugadorMid) || usuario.UsuarioLoL.Equals(Model.JugadorSupport) || usuario.UsuarioLoL.Equals(Model.JugadorAdc);
-
-    }
-    <!--a�adir un bototon que dependendiendo de si soy el creador pueda o bien eliminar la partida o siendo usuario salir de la partida-->
-    <div style="margin-left: auto; display: flex; flex-direction: column;">
-        @* Top *@
-        <div style="display: flex;">
             @if (@Model.JugadorTop == null && !imIn)
             {
-                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "top", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-                    Unirse
+                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "top", usuarioLoL = @usuario.UsuarioLoL })'>
+                    <button class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
                 </a>
             }
-            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/top.png" alt="">
         </div>
 
-        @* Jungle *@
-        <div style="display: flex;">
+        <div class="d-flex justify-content-between w-25 m-auto my-2">
+            <h5 class="text-center m-0 d-flex align-items-center justify-content-center me-5" style="border: 1px solid rgba(240, 230 ,210, 0.3); min-width: 100px; width: fit-content; height: 40px; background-color: #101014; border-radius: 10px; padding: 16px;">
+                @Model.JugadorJungle
+            </h5>
+
+            <div class="d-flex align-items-center ms-5 me-2">
+                <p style="color: #F0E6D2; width: 7ch;" class="m-0">
+                    Jungla
+                </p>
+                <img width="40" src="~/assets/images/posiciones/jungle.png" alt="">
+            </div>
+
             @if (@Model.JugadorJungle == null && !imIn)
             {
-                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "jungle", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-                    Unirse
+                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "jungle", usuarioLoL = @usuario.UsuarioLoL })'>
+                    <button class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
                 </a>
             }
-            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/jungle.png" alt="">
         </div>
 
-        @* Mid *@
-        <div style="display: flex;">
+        <div class="d-flex justify-content-between w-25 m-auto my-2">
+            <h5 class="text-center m-0 d-flex align-items-center justify-content-center me-5" style="border: 1px solid rgba(240, 230 ,210, 0.3); min-width: 100px; width: fit-content; height: 40px; background-color: #101014; border-radius: 10px; padding: 16px;">
+                @Model.JugadorMid
+            </h5>
+
+            <div class="d-flex align-items-center ms-5 me-2">
+                <p style="color: #F0E6D2; width: 7ch;" class="m-0">
+                    Mid
+                </p>
+                <img width="40" src="~/assets/images/posiciones/mid.png" alt="">
+            </div>
+
             @if (@Model.JugadorMid == null && !imIn)
             {
-                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "mid", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-                    Unirse
+                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "mid", usuarioLoL = @usuario.UsuarioLoL })'>
+                    <button class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
                 </a>
             }
-            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/mid.png" alt="">
         </div>
 
-        @* Support *@
-        <div style="display: flex;">
+        <div class="d-flex justify-content-between w-25 m-auto my-2">
+            <h5 class="text-center m-0 d-flex align-items-center justify-content-center me-5" style="border: 1px solid rgba(240, 230 ,210, 0.3); min-width: 100px; width: fit-content; height: 40px; background-color: #101014; border-radius: 10px; padding: 16px;">
+                @Model.JugadorSupport
+            </h5>
+
+            <div class="d-flex align-items-center ms-5 me-2">
+                <p style="color: #F0E6D2; width: 7ch;" class="m-0">
+                    Support
+                </p>
+                <img width="40" src="~/assets/images/posiciones/support.png" alt="">
+            </div>
+
             @if (@Model.JugadorSupport == null && !imIn)
             {
-                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "support", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-                    Unirse
+                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "support", usuarioLoL = @usuario.UsuarioLoL })'>
+                    <button class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
                 </a>
             }
-            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/support.png" alt="">
         </div>
 
-        @* Adc *@
-        <div style="display: flex;">
+        <div class="d-flex justify-content-between w-25 m-auto my-2">
+            <h5 class="text-center m-0 d-flex align-items-center justify-content-center me-5" style="border: 1px solid rgba(240, 230 ,210, 0.3); min-width: 100px; width: fit-content; height: 40px; background-color: #101014; border-radius: 10px; padding: 16px;">
+                @Model.JugadorAdc
+            </h5>
+
+            <div class="d-flex align-items-center ms-5 me-2">
+                <p style="color: #F0E6D2; width: 7ch;" class="m-0">
+                    Adc
+                </p>
+                <img width="40" src="~/assets/images/posiciones/adc.png" alt="">
+            </div>
+
             @if (@Model.JugadorAdc == null && !imIn)
             {
-                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "adc", usuarioLoL = @usuario.UsuarioLoL })' style="margin-right: 20px; text-decoration: none; font-size: 24px; color: white; min-width: 100px; width: fit-content; height: 50px; background-color: #7c7; display: flex; justify-content: center; align-items: center; border-radius: 4px; padding: 16px; line-height: 1;">
-                    Unirse
+                <a href='@Url.Action("UnirsePosicion", "Partida", new { idPartida = @Model.IdPartida, posicion = "adc", usuarioLoL = @usuario.UsuarioLoL })'>
+                    <button class="btn pt-2 BtnUnirse text-white w-100">Unirse</button>
                 </a>
             }
-            <img width="40" style="margin-left: auto; margin-bottom: 18px;" src="~/assets/images/posiciones/adc.png" alt="">
         </div>
-        
-        @if (Model.FkUsuarioCreador == usuario.IdUsuario)
+    </div>
+</div>
+<div class="w-75 m-auto mb-5">
+    @if (Model.FkUsuarioCreador == usuario.IdUsuario)
+    {
+        //boton elimino partida como creador
+        <form asp-action="EliminarPartida" asp-controller="Partida" method="post">
+            <input type="hidden" name="idPartida" value="@Model.IdPartida" />
+            <button type="submit" class="btn pt-2 BtnLleno text-white mt-3">Eliminar Partida</button>
+        </form>
+
+    }
+    else
+    {
+        if (imIn)
         {
-            //boton elimino partida como creador
-            <form asp-action="EliminarPartida" asp-controller="Partida" method="post">
+            // me salgo de la partida como jugador si estoy unido a la partida
+            <form asp-action="AbandonarPartida" asp-controller="Partida" method="post">
                 <input type="hidden" name="idPartida" value="@Model.IdPartida" />
-                <button type="submit" class="btn pt-2 BtnUnirse text-white w-100">Eliminar Partida</button>
+                <button type="submit" class="btn pt-2 BtnLleno text-white mt-3">Abandonar Partida</button>
             </form>
 
         }
-        else
-        {
-            if (imIn)
-            {
-                // me salgo de la partida como jugador si estoy unido a la partida
-                <form asp-action="AbandonarPartida" asp-controller="Partida" method="post">
-                    <input type="hidden" name="idPartida" value="@Model.IdPartida" />
-                    <button type="submit" class="btn pt-2 BtnUnirse text-white w-100">Abandonar Partida</button>
-                </form>
-
-            }
-        }
-
-    </div>
-</div>
-<div>
+    }
 </div>
